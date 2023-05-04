@@ -1,7 +1,6 @@
-import '@/styles/globals.css';
-import React from 'react';
+import '../styles/globals.css';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
