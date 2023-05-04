@@ -22,10 +22,9 @@ export default async function Home() {
   return (
     <div>
       <NavBar />
-    <main>
-      <h1 className='mt-8'>Home Page: BadSauce</h1>
-      
-    </main>
+      <main className="flex flex-col min-h-screen mx-auto p-4">
+        <h1 className=" flex-grow">Home</h1>
+      </main>
       <Footer />
     </div>
   );

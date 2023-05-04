@@ -1,13 +1,12 @@
 export default function Footer() {
   return (
-    <footer className='h-24'>
-      <div>
-        <ul className='flex flex-col'>
-        <li className='p-4'>Footer</li>
-        <li className='p-4'>Links</li>
-        <li className='p-4'>Copy Right</li>
+    <footer className="h-24">
+      <div className="container mx-auto px-4 h-full flex flex-col justify-end">
+        <ul className="text-center p-2">
+          <li className="text-md">hello@badsauce.co.uk</li>
+          <li className="text-sm">© 2023 All Rights Reserved</li>
         </ul>
-        </div>
+      </div>
     </footer>
   );
 }
