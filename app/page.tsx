@@ -1,6 +1,5 @@
 import Stripe from 'stripe';
-import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
+import DefaultLayout from '@/components/DefaultLayout';
 
 async function getStripeProducts() {
   const stripe = new Stripe(process.env.STRIPE_SECRET ?? '', {
@@ -21,11 +20,19 @@ export default async function Home() {
   console.log(products);
   return (
     <div>
-      <NavBar />
-      <main className="flex flex-col min-h-screen mx-auto p-4">
-        <h1 className=" flex-grow">Home</h1>
-      </main>
-      <Footer />
+      <DefaultLayout>
+        <main className="flex flex-col min-h-screen mx-auto p-4">
+          <section id="home" className="flex-grow">
+            <h1>Home</h1>
+          </section>
+          <section id="about" className="flex-grow">
+            <h1>About</h1>
+          </section>
+          <section id="contact" className="flex-grow">
+            <h1>Contact</h1>
+          </section>
+        </main>
+      </DefaultLayout>
     </div>
   );
 }

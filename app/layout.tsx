@@ -11,7 +11,7 @@ export default async function RootLayout({
   return (
     <html>
       <head>
-        <title>Next.js eCommerce Web App: BadSauce</title>
+        <title>BadSauce</title>
       </head>
       <body>{children}</body>
     </html>
