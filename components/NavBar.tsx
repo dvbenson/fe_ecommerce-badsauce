@@ -1,37 +1,57 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBars,
+  faXmark,
+  faCartShopping,
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
+  const pathname = usePathname();
 
   const handleNav = () => {
     setShowMenu(!showMenu);
   };
 
   return (
-    <nav className="w-full h-24 shadow border-t-0 z-50">
-      <div className="flex justify-between items-center h-full w-full px-4 2x1:px-16">
+    <nav className="fixed w-full h-24 shadow border-t-0 bg-white z-50">
+      <div className="flex justify-between items-center h-full w-full px-4 2x1:px-16 ">
         <div className="ml-4">
           <p className="text-3xl">BADSAUCE</p>
         </div>
         <div className="mr-4 hidden lg:flex">
           <ul className="hidden lg:flex flex-row gap-5">
             <li className="p-4">
-              <a href="#home">Home</a>
+              {pathname === '/shop' ? (
+                <Link href="/">Home</Link>
+              ) : (
+                <a href="#home">Home</a>
+              )}
             </li>
             <li className="p-4">
-              <a href="#about">About</a>
+              {pathname === '/shop' ? (
+                <Link href="/#about">About</Link>
+              ) : (
+                <a href="#about">About</a>
+              )}
             </li>
             <li className="p-4">
-              <a href="#contact">Contact</a>
+              {pathname === '/shop' ? (
+                <Link href="/#contact">Contact</Link>
+              ) : (
+                <a href="#contact">Contact</a>
+              )}
             </li>
             <li className="p-4">
               <Link href="/shop">Shop</Link>
             </li>
-            <li className="p-4">Cart</li>
+            <li className="p-4">
+              <FontAwesomeIcon icon={faCartShopping} className="text-xl" />
+            </li>
           </ul>
         </div>
         <div onClick={handleNav} className="pl-24 cursor-pointer lg:hidden">
@@ -58,18 +78,30 @@ export default function Navbar() {
                 className="py-4 cursor-pointer"
                 onClick={() => setShowMenu(false)}
               >
-                Home
+                {pathname === '/shop' ? (
+                  <Link href="/">Home</Link>
+                ) : (
+                  <a href="#home">Home</a>
+                )}
               </li>
-              <li className="p-4">
-                <a href="#home">Home</a>
+              <li
+                className="py-4 cursor-pointer"
+                onClick={() => setShowMenu(false)}
+              >
+                {pathname === '/shop' ? (
+                  <Link href="/#about">About</Link>
+                ) : (
+                  <a href="#about">About</a>
+                )}
               </li>
-              <li className="p-4">
-                <a href="#about">About</a>
+              <li className="py-4" onClick={() => setShowMenu(false)}>
+                {pathname === '/shop' ? (
+                  <Link href="/#contact">Contact</Link>
+                ) : (
+                  <a href="#contact">Contact</a>
+                )}
               </li>
-              <li className="p-4">
-                <a href="#contact">Contact</a>
-              </li>
-              <li className="p-4">
+              <li className="py-4" onClick={() => setShowMenu(false)}>
                 <Link href="/shop">Shop</Link>
               </li>
               <li className="py-4">Cart</li>
