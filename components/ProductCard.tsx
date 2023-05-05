@@ -1,11 +1,8 @@
 'use client';
 import { CardProps } from '../app/shop/page';
 import { useRouter } from 'next/navigation';
-
-export interface ModalProps {
-  showModal: boolean;
-  setShowModal: (showModal: boolean) => void;
-}
+import useCart from '../src/store';
+import CartState from '../src/store';
 
 export default function ProductCard({
   product_id,
@@ -13,6 +10,8 @@ export default function ProductCard({
   product_info,
 }: CardProps) {
   const router = useRouter();
+
+  const setProduct = useCart((state) => state.setProduct);
 
   function onProductClick() {
     router.push(`/shop/product/${product_id}`);
@@ -23,7 +22,7 @@ export default function ProductCard({
       id="card-container"
       className="relative h-[300px] w-[300px]"
       onClick={() => {
-        onProductClick;
+        onProductClick();
       }}
     >
       <div
