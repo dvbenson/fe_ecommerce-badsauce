@@ -37,9 +37,9 @@ export default async function Shop() {
 
   return (
     <DefaultLayout>
-      <main className="flex flex-col min-h-screen p-4">
+      <main className="flex flex-col justify-center items-center mx-auto min-h-screen p-4">
         <section className="flex-grow mt-24">
-          <div className="w-full max-w-[1000px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="w-full max-w-[1000px]  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {products.map((product, productIndex) => {
               const product_id = product.product.id;
               const product_price = product.unit_amount;

@@ -1,3 +1,9 @@
+import ProductModal from 'components/ProductModal';
+
 export default function page() {
-  return <div>THIS IS A PRODUCT</div>;
+  return (
+    <>
+      <ProductModal />
+    </>
+  );
 }
