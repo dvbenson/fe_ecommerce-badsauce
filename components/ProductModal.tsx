@@ -1,22 +1,24 @@
 'use client';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
-export default function ProductModal(
-  showModal: boolean,
-  setShowModal: (showModal: boolean) => void,
-) {
+export default function ProductModal() {
   const router = useRouter();
+  // const pathname = usePathname();
+  // const showModal = pathname.startsWith('/shop/product/');
 
   const handleModalClose = () => {
-    setShowModal(false);
     router.back();
   };
 
+  // if (!showModal) {
+  //   return null;
+  // }
+
   return (
-    <div className="relative width-[600px] h-[300px] bg-white p-10">
-      <div className="w-full h-full"></div>
+    <div className="width-[600px] relative h-[300px] bg-white p-10">
+      <div className="h-full w-full"></div>
       <div className="absolute right-0 top-0">
         <button onClick={handleModalClose} className="cursor-pointer">
           <FontAwesomeIcon
