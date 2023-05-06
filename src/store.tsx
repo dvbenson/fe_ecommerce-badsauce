@@ -12,7 +12,10 @@ interface CartState {
 interface Product {
   product_id: string;
   product_price: number | null;
-  product_info: object;
+  product_desc: string | null;
+  product_name: string;
+  product_img: string[];
+  metadata: object;
 }
 
 export const useCart = create<CartState>()((set, get) => ({

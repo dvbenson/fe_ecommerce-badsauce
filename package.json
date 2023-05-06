@@ -30,12 +30,14 @@
     "styled-components": "6.0.0-beta.2",
     "styled-jsx": "5.1.0",
     "use-count-up": "3.0.1",
+    "uuid": "9.0.0",
     "zustand": "4.3.8"
   },
   "devDependencies": {
     "@types/node": "18.0.3",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
+    "@types/uuid": "9.0.1",
     "autoprefixer": "^10.4.7",
     "eslint": "8.19.0",
     "eslint-config-next": "latest",
