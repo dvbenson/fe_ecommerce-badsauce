@@ -9,7 +9,7 @@ interface CartState {
   emptyCart: () => void;
 }
 
-const useCart = create<CartState>()((set, get) => ({
+export const useCart = create<CartState>()((set, get) => ({
   cart: [],
   product: {},
 
@@ -55,4 +55,20 @@ const useCart = create<CartState>()((set, get) => ({
   },
 }));
 
-export default useCart;
+interface ModalState {
+  isModalOpen: boolean;
+  setIsModalOpen: () => void;
+}
+
+export const useModal = create<ModalState>()((set, get) => ({
+  isModalOpen: false,
+
+  setIsModalOpen: () => {
+    set((state) => {
+      return {
+        ...state,
+        isModalOpen: !state.isModalOpen,
+      };
+    });
+  },
+}));
