@@ -7,8 +7,6 @@ import { useRouter } from 'next/navigation';
 export default function page() {
   const product = useCart((state) => state.product);
 
-  // product data needs to be refetched
-  console.log(product);
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <div className="grid ">

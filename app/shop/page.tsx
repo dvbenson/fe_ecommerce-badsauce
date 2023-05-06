@@ -1,4 +1,4 @@
-import { getStripeProducts, PriceWithProduct } from 'app/api/products/route';
+import { getStripeProducts, PriceWithProduct } from 'utils/stripe/getProducts';
 import React from 'react';
 import Link from 'next/link';
 import DefaultLayout from '../../components/DefaultLayout';
