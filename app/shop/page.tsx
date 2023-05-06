@@ -1,6 +1,12 @@
+'use client';
+import { useEffect } from 'react';
+import { useCart } from 'src/store';
 import Stripe from 'stripe';
+import React from 'react';
+import Link from 'next/link';
 import DefaultLayout from '../../components/DefaultLayout';
 import ProductCard from '../../components/ProductCard';
+import uuid from 'react-uuid';
 
 async function getStripeProducts() {
   const stripe = new Stripe(process.env.STRIPE_SECRET ?? '', {
@@ -34,24 +40,31 @@ interface PriceWithProduct extends Stripe.Price {
 
 export default async function Shop() {
   const products: PriceWithProduct[] = await getStripeProducts();
+  const [product, setProduct] = useCart((state) => [
+    state.product,
+    state.setProduct,
+  ]);
+
+  useEffect(() => {}, []);
 
   return (
     <DefaultLayout>
-      <main className="flex flex-col justify-center items-center mx-auto min-h-screen p-4">
-        <section className="flex-grow mt-24">
-          <div className="w-full max-w-[1000px]  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <main className="mx-auto flex min-h-screen flex-col items-center justify-center p-4">
+        <section className="mt-24 flex-grow">
+          <div className="grid w-full  max-w-[1000px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {products.map((product, productIndex) => {
               const product_id = product.product.id;
               const product_price = product.unit_amount;
               const product_info = product.product;
-
               return (
-                <ProductCard
-                  key={productIndex}
-                  product_id={product_id}
-                  product_price={product_price}
-                  product_info={product_info}
-                />
+                <Link href={`/shop/products/${product_id}`}>
+                  <ProductCard
+                    key={uuid()}
+                    product_id={product_id}
+                    product_price={product_price}
+                    product_info={product_info}
+                  />
+                </Link>
               );
             })}
           </div>

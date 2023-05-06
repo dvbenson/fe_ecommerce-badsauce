@@ -5,6 +5,16 @@ const nextConfig = {
     // Required:
     appDir: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'files.stripe.com',
+        port: '',
+        pathname: '/links/**',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

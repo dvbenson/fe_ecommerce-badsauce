@@ -3,10 +3,16 @@ import { create } from 'zustand';
 interface CartState {
   cart: any[];
   product: any;
-  setProduct: (params: { newProduct: any }) => void;
+  setProduct: (params: { newProduct: Product }) => void;
   addItemToCart: (params: { newItem: any }) => void;
   removeItemFromCart: (params: { itemIndex: number }) => void;
   emptyCart: () => void;
+}
+
+interface Product {
+  product_id: string;
+  product_price: number | null;
+  product_info: object;
 }
 
 export const useCart = create<CartState>()((set, get) => ({
