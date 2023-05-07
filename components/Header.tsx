@@ -9,7 +9,7 @@ import {
   faCartShopping,
 } from '@fortawesome/free-solid-svg-icons';
 
-export default function Navbar() {
+export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const pathname = usePathname();
 

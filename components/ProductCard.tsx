@@ -1,5 +1,5 @@
 'use client';
-import { useCart } from '../src/store';
+import { useCart } from '../app/store';
 import { CardProps } from '../app/shop/page';
 
 export default function ProductCard({

@@ -4,7 +4,7 @@ interface CartState {
   cart: any[];
   product: any;
   setProduct: (params: { newProduct: Product }) => void;
-  addItemToCart: (params: { newItem: any }) => void;
+  addItemToCart: (params: { newItem: object }) => void;
   removeItemFromCart: (params: { itemIndex: number }) => void;
   emptyCart: () => void;
 }
