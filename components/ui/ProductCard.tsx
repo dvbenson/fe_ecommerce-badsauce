@@ -1,6 +1,7 @@
 'use client';
-import { useCart } from '../app/store';
-import { CardProps } from '../app/shop/page';
+import { useCart } from '../../app/store';
+import { CardProps } from '../../app/shop/page';
+import ImageFrame from '../ImageFrame';
 
 export default function ProductCard({
   product_id,
@@ -37,16 +38,13 @@ export default function ProductCard({
         onProductClick();
       }}
     >
-      <div
-        id="card"
+      <ImageFrame
+        src={product_img[0]}
+        alt={product_name}
+        height={300}
+        width={300}
         className="flex h-full w-full cursor-pointer items-center justify-center overflow-hidden shadow hover:shadow-lg"
-      >
-        <img
-          src={product_img[0]}
-          alt={product_name}
-          className="h-full w-full object-cover"
-        />
-      </div>
+      />
       <div className="absolute right-0 top-0 p-2">
         <button disabled className="rounded-full bg-white p-2 font-bold shadow">
           {product_name}

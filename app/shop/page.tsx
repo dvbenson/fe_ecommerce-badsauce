@@ -1,8 +1,8 @@
 import { getStripeProducts, PriceWithProduct } from 'utils/stripe/getProducts';
 import React from 'react';
 import Link from 'next/link';
-import DefaultLayout from '../../components/DefaultLayout';
-import ProductCard from '../../components/ProductCard';
+import DefaultLayout from '../../components/ui/DefaultLayout';
+import ProductCard from '../../components/ui/ProductCard';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface CardProps {

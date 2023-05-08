@@ -1,13 +1,13 @@
-import DefaultLayout from '@/components/DefaultLayout';
+import DefaultLayout from '@/components/ui/DefaultLayout';
 import ScrollOffset from '@/components/ScrollOffset';
 
 export default function Home() {
   return (
     <div>
       <DefaultLayout>
-        <main className="flex flex-col min-h-screen mx-auto p-4">
+        <main className="mx-auto flex min-h-screen flex-col p-4">
           <ScrollOffset id="home" />
-          <section id="home" className="flex-grow mt-24">
+          <section id="home" className="mt-24 flex-grow">
             <h1>Home</h1>
           </section>
           <ScrollOffset id="about" />
