@@ -1,4 +1,5 @@
-import Link from 'next/link';
+'use client';
+import { useCart } from '../../app/store';
 import { usePathname } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import Icon from '../Icon';
@@ -16,6 +17,7 @@ export default function SideNavBar({
   setShowMenu,
   handleNav,
 }: NavBarProps) {
+  const [cart] = useCart((state) => [state.cart]);
   const pathname = usePathname();
 
   return (
@@ -64,7 +66,14 @@ export default function SideNavBar({
               onClick={() => setShowMenu(!showMenu)}
             />
             <li key={uuidv4()} className="py-4">
-              <Icon icon={faCartShopping} className="text-xl" />
+              <div className="relative items-center">
+                <Icon icon={faCartShopping} className="text-xl" />
+                {cart.length > 0 && (
+                  <span className="absolute right-0 top-0 aspect-square -translate-y-1/2 translate-x-1/2 rounded-full bg-red-500 px-1 text-xs text-white">
+                    <p>{cart.length}</p>
+                  </span>
+                )}
+              </div>
             </li>
           </ul>
         </div>

@@ -3,7 +3,11 @@ import { create } from 'zustand';
 interface CartState {
   cart: any[];
   product: any;
+  quantityCount: number;
+  totalAmount: number | string;
   setProduct: (params: { newProduct: Product }) => void;
+  setQuantityCount: (params: { newQuantityCount: number }) => void;
+  setTotalAmount: (params: { newTotalAmount: number | string }) => void;
   addItemToCart: (params: { newItem: object }) => void;
   removeItemFromCart: (params: { itemIndex: number }) => void;
   emptyCart: () => void;
@@ -21,6 +25,8 @@ interface Product {
 export const useCart = create<CartState>()((set, get) => ({
   cart: [],
   product: {},
+  quantityCount: 0,
+  totalAmount: 0,
 
   setProduct: (params) => {
     const { newProduct } = params;
@@ -28,6 +34,26 @@ export const useCart = create<CartState>()((set, get) => ({
       return {
         ...state,
         product: newProduct,
+      };
+    });
+  },
+
+  setQuantityCount: (params) => {
+    const { newQuantityCount } = params;
+    set((state) => {
+      return {
+        ...state,
+        quantityCount: newQuantityCount,
+      };
+    });
+  },
+
+  setTotalAmount: (params) => {
+    const { newTotalAmount } = params;
+    set((state) => {
+      return {
+        ...state,
+        totalAmount: newTotalAmount,
       };
     });
   },

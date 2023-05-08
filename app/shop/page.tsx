@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export interface CardProps {
   product_id: string;
+  price_id: string;
   product_price: number | null;
   product_desc: string | null;
   product_name: string;
@@ -23,6 +24,7 @@ export default async function Shop() {
         <section className="mt-24 flex-grow">
           <div className="grid w-full  max-w-[1000px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {products.map((product) => {
+              const price_id = product.id;
               const product_price = product.unit_amount;
               const product_info = product.product;
               const {
@@ -37,6 +39,7 @@ export default async function Shop() {
                   <ProductCard
                     key={uuidv4()}
                     product_id={product_id}
+                    price_id={price_id}
                     product_price={product_price}
                     product_desc={product_desc}
                     product_name={product_name}

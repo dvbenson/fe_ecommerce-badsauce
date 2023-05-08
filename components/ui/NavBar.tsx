@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useCart } from '../../app/store';
 import { usePathname } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import SideNavBar from '@/components/ui/SideNavBar';
@@ -9,6 +10,7 @@ import Icon from '@/components/Icon';
 import { faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
+  const [cart] = useCart((state) => [state.cart]);
   const [showMenu, setShowMenu] = useState(false);
   const pathname = usePathname();
 
@@ -45,7 +47,17 @@ export default function Navbar() {
             />
             <NavItem key={uuidv4()} href="/shop" label="Shop" className="p-4" />
             <li key={uuidv4()} className="p-4">
-              <Icon icon={faCartShopping} className="text-xl" />
+              <div className="group relative grid cursor-pointer place-items-center">
+                <Icon
+                  icon={faCartShopping}
+                  className="cursor-pointer text-3xl group-hover:text-slate-500"
+                />
+                {cart.length > 0 && (
+                  <span className="pointer-events-none absolute right-0 top-0 grid aspect-square h-6 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-red-600  text-white shadow">
+                    <p className="text-sm font-medium">{cart.length}</p>
+                  </span>
+                )}
+              </div>
             </li>
           </ul>
         </div>

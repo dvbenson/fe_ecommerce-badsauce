@@ -5,6 +5,7 @@ import ImageFrame from '../ImageFrame';
 
 export default function ProductCard({
   product_id,
+  price_id,
   product_price,
   product_desc,
   product_name,
@@ -19,6 +20,7 @@ export default function ProductCard({
   function onProductClick() {
     const newProduct = {
       product_id,
+      price_id,
       product_price,
       product_desc,
       product_name,
@@ -27,8 +29,6 @@ export default function ProductCard({
     };
     setProduct({ newProduct });
   }
-  //need to handle the null values above
-  //e.g. const displayPrice = product_price ?? 0;
 
   return (
     <div
@@ -41,9 +41,7 @@ export default function ProductCard({
       <ImageFrame
         src={product_img[0]}
         alt={product_name}
-        height={300}
-        width={300}
-        className="flex h-full w-full cursor-pointer items-center justify-center overflow-hidden shadow hover:shadow-lg"
+        className="h-full w-full cursor-pointer items-center justify-center overflow-hidden shadow hover:shadow-lg"
       />
       <div className="absolute right-0 top-0 p-2">
         <button disabled className="rounded-full bg-white p-2 font-bold shadow">

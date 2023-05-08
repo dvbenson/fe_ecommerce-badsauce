@@ -11,8 +11,8 @@ interface ImageFrameProps {
 export default function ImageFrame({
   src,
   alt,
-  width = 600,
-  height = 600,
+  height = 300,
+  width = 300,
   className,
 }: ImageFrameProps) {
   return (
@@ -22,7 +22,8 @@ export default function ImageFrame({
         alt={alt}
         height={height}
         width={width}
-        className="aspect-square w-full object-cover"
+        priority={true}
+        className="aspect-square object-cover"
       />
     </div>
   );
