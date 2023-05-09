@@ -49,11 +49,18 @@ export default function QuantityControl({
       >
         <h2 className="font-bold">Quantity</h2>
         <div id="buttons-quantity" className="grid grid-cols-3 gap-2">
-          <Button
-            onClick={() => handleMinus()}
-            label={<Icon icon={faMinus} className="text-black" />}
-            className="h-8 w-8 rounded-full bg-gray-200 text-center shadow-md"
-          />
+          {quantityCount > 1 ? (
+            <Button
+              onClick={() => handleMinus()}
+              label={<Icon icon={faMinus} className="text-black" />}
+              className="h-8 w-8 rounded-full bg-gray-200 text-center shadow-md"
+            />
+          ) : (
+            <Button
+              className="h-8 w-8 rounded-full bg-gray-200 text-center shadow-md"
+              disabled
+            />
+          )}
           <span>{quantityCount}</span>
           <Button
             onClick={() => handlePlus()}

@@ -9,16 +9,21 @@ import Button from '@/components/Button';
 
 export default function ProductPage() {
   const product = useCart((state) => state.product);
+  const [quantityCount, setQuantityCount] = useCart((state) => [
+    state.quantityCount,
+    state.setQuantityCount,
+  ]);
   const addItemToCart = useCart((state) => state.addItemToCart);
+  const cart = useCart((state) => state.cart);
 
   function handleAddToCart() {
     const newItem: object = {
-      quantity: 1,
-      price_id: product.id,
+      quantity: quantityCount,
+      price_id: product.price_id,
     };
     addItemToCart({ newItem });
   }
-
+  console.log(cart);
   return (
     <DefaultLayout>
       <main className="flex min-h-screen items-center justify-center sm:relative">
@@ -51,7 +56,10 @@ export default function ProductPage() {
                 className="flex justify-center gap-4"
               >
                 <Button
-                  onClick={() => handleAddToCart()}
+                  onClick={() => {
+                    handleAddToCart();
+                    setQuantityCount({ newQuantityCount: 1 });
+                  }}
                   label={'ADD TO CART'}
                   className="h-16 w-52 rounded-full bg-black font-bold text-white shadow-md"
                 />

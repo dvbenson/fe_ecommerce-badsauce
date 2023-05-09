@@ -10,12 +10,14 @@ interface NavBarProps {
   showMenu: boolean;
   setShowMenu: (showMenu: boolean) => void;
   handleNav: () => void;
+  handleCart: () => number;
 }
 
 export default function SideNavBar({
   showMenu,
   setShowMenu,
   handleNav,
+  handleCart,
 }: NavBarProps) {
   const [cart] = useCart((state) => [state.cart]);
   const pathname = usePathname();
@@ -70,7 +72,7 @@ export default function SideNavBar({
                 <Icon icon={faCartShopping} className="text-xl" />
                 {cart.length > 0 && (
                   <span className="absolute right-0 top-0 aspect-square -translate-y-1/2 translate-x-1/2 rounded-full bg-red-500 px-1 text-xs text-white">
-                    <p>{cart.length}</p>
+                    <p>{handleCart()}</p>
                   </span>
                 )}
               </div>

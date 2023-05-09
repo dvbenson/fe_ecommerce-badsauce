@@ -18,6 +18,12 @@ export default function Navbar() {
     setShowMenu(!showMenu);
   };
 
+  const handleCart = () => {
+    return cart.reduce((totalItems, item) => {
+      return totalItems + item.quantity;
+    }, 0);
+  };
+
   return (
     <nav className="fixed z-50 h-24 w-full border-t-0 bg-white shadow">
       <div className="2x1:px-16 flex h-full w-full items-center justify-between px-4 ">
@@ -54,7 +60,7 @@ export default function Navbar() {
                 />
                 {cart.length > 0 && (
                   <span className="pointer-events-none absolute right-0 top-0 grid aspect-square h-6 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-red-600  text-white shadow">
-                    <p className="text-sm font-medium">{cart.length}</p>
+                    <p className="text-sm font-medium">{handleCart()}</p>
                   </span>
                 )}
               </div>
@@ -69,6 +75,7 @@ export default function Navbar() {
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         handleNav={handleNav}
+        handleCart={handleCart}
       />
     </nav>
   );

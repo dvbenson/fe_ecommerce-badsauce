@@ -25,7 +25,7 @@ interface Product {
 export const useCart = create<CartState>()((set, get) => ({
   cart: [],
   product: {},
-  quantityCount: 0,
+  quantityCount: 1,
   totalAmount: 0,
 
   setProduct: (params) => {
