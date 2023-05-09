@@ -1,5 +1,5 @@
 'use client';
-import { useCart } from '../../app/store';
+import { useCart, useModal } from '../../app/store';
 import { usePathname } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import Icon from '../Icon';
@@ -7,25 +7,22 @@ import NavItem from '../NavItem';
 import { faXmark, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 interface NavBarProps {
-  showMenu: boolean;
-  setShowMenu: (showMenu: boolean) => void;
   handleNav: () => void;
   handleCart: () => number;
 }
 
-export default function SideNavBar({
-  showMenu,
-  setShowMenu,
-  handleNav,
-  handleCart,
-}: NavBarProps) {
+export default function SideNavBar({ handleNav, handleCart }: NavBarProps) {
+  const [showSideNav, setShowSideNav] = useModal((state) => [
+    state.showSideNav,
+    state.setShowSideNav,
+  ]);
   const [cart] = useCart((state) => [state.cart]);
   const pathname = usePathname();
 
   return (
     <div
       className={
-        showMenu
+        showSideNav
           ? `sm:p-30 duration-250 fixed left-0 top-0 z-50 h-screen w-[65%] bg-white p-10 shadow ease-in sm:w-[30%] lg:hidden`
           : 'fixed left-[-100%] top-0 p-10 duration-500 ease-in'
       }
@@ -42,7 +39,7 @@ export default function SideNavBar({
               label={'Home'}
               active={pathname === '/shop'}
               className="cursor-pointer py-4"
-              onClick={() => setShowMenu(!showMenu)}
+              onClick={() => setShowSideNav()}
             />
             <NavItem
               key={uuidv4()}
@@ -50,7 +47,7 @@ export default function SideNavBar({
               label={'About'}
               active={pathname === '/shop'}
               className="cursor-pointer py-4"
-              onClick={() => setShowMenu(!showMenu)}
+              onClick={() => setShowSideNav()}
             />
             <NavItem
               key={uuidv4()}
@@ -58,14 +55,14 @@ export default function SideNavBar({
               label={'Contact'}
               active={pathname === '/shop'}
               className="cursor-pointer py-4"
-              onClick={() => setShowMenu(!showMenu)}
+              onClick={() => setShowSideNav()}
             />
             <NavItem
               key={uuidv4()}
               href="/shop"
               label="Shop"
               className="cursor-pointer py-4"
-              onClick={() => setShowMenu(!showMenu)}
+              onClick={() => setShowSideNav()}
             />
             <li key={uuidv4()} className="py-4">
               <div className="relative items-center">

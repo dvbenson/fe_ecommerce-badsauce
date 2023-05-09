@@ -1,21 +1,33 @@
 'use client';
-import { useState } from 'react';
-import { useCart } from '../../app/store';
+import { useCart, useModal } from '../../app/store';
 import { usePathname } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import SideNavBar from '@/components/ui/SideNavBar';
+import SideCart from '@/components/ui/SideCart';
 import Logo from '@/components/Logo';
 import NavItem from '@/components/NavItem';
 import Icon from '@/components/Icon';
 import { faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
-  const [cart] = useCart((state) => [state.cart]);
-  const [showMenu, setShowMenu] = useState(false);
+  const cart = useCart((state) => state.cart);
+  const [showSideNav, setShowSideNav] = useModal((state) => [
+    state.showSideNav,
+    state.setShowSideNav,
+  ]);
+  const [isSideCartOpen, setSideCartOpen] = useModal((state) => [
+    state.isSideCartOpen,
+    state.setSideCartOpen,
+  ]);
   const pathname = usePathname();
 
   const handleNav = () => {
-    setShowMenu(!showMenu);
+    setShowSideNav();
+  };
+
+  const handleSideCart = () => {
+    console.log('handleSideCart called');
+    setSideCartOpen();
   };
 
   const handleCart = () => {
@@ -53,7 +65,10 @@ export default function Navbar() {
             />
             <NavItem key={uuidv4()} href="/shop" label="Shop" className="p-4" />
             <li key={uuidv4()} className="p-4">
-              <div className="group relative grid cursor-pointer place-items-center">
+              <div
+                onClick={() => handleSideCart()}
+                className="group relative grid cursor-pointer place-items-center"
+              >
                 <Icon
                   icon={faCartShopping}
                   className="cursor-pointer text-3xl group-hover:text-slate-500"
@@ -71,12 +86,8 @@ export default function Navbar() {
           <Icon icon={faBars} className="text-2xl sm:mr-2 sm:text-4xl" />
         </div>
       </div>
-      <SideNavBar
-        showMenu={showMenu}
-        setShowMenu={setShowMenu}
-        handleNav={handleNav}
-        handleCart={handleCart}
-      />
+      {isSideCartOpen && <SideCart handleSideCart={handleSideCart} />}
+      <SideNavBar handleNav={handleNav} handleCart={handleCart} />
     </nav>
   );
 }

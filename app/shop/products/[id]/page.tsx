@@ -6,6 +6,7 @@ import DefaultLayout from '@/components/ui/DefaultLayout';
 import ProductDetails from '@/components/ProductDetails';
 import QuantityControl from '@/components/QuantityControl';
 import Button from '@/components/Button';
+import { CartItem } from 'app/store';
 
 export default function ProductPage() {
   const product = useCart((state) => state.product);
@@ -17,13 +18,13 @@ export default function ProductPage() {
   const cart = useCart((state) => state.cart);
 
   function handleAddToCart() {
-    const newItem: object = {
+    const newItem: CartItem = {
       quantity: quantityCount,
       price_id: product.price_id,
     };
     addItemToCart({ newItem });
   }
-  console.log(cart);
+
   return (
     <DefaultLayout>
       <main className="flex min-h-screen items-center justify-center sm:relative">

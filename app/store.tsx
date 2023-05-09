@@ -1,30 +1,44 @@
 import { create } from 'zustand';
 
-interface CartState {
-  cart: any[];
-  product: any;
-  quantityCount: number;
-  totalAmount: number | string;
-  setProduct: (params: { newProduct: Product }) => void;
-  setQuantityCount: (params: { newQuantityCount: number }) => void;
-  setTotalAmount: (params: { newTotalAmount: number | string }) => void;
-  addItemToCart: (params: { newItem: object }) => void;
-  removeItemFromCart: (params: { itemIndex: number }) => void;
-  emptyCart: () => void;
+export interface CartItem {
+  quantity: number;
+  price_id: string;
 }
 
 interface Product {
   product_id: string;
-  product_price: number | null;
-  product_desc: string | null;
+  price_id: string;
+  product_price: number;
+  product_desc: string;
   product_name: string;
   product_img: string[];
   metadata: object;
 }
 
+interface CartState {
+  cart: CartItem[];
+  product: Product;
+  quantityCount: number;
+  totalAmount: number | string;
+  setProduct: (params: { newProduct: Product }) => void;
+  setQuantityCount: (params: { newQuantityCount: number }) => void;
+  setTotalAmount: (params: { newTotalAmount: number | string }) => void;
+  addItemToCart: (params: { newItem: CartItem }) => void;
+  removeItemFromCart: (params: { itemIndex: number }) => void;
+  emptyCart: () => void;
+}
+
 export const useCart = create<CartState>()((set, get) => ({
   cart: [],
-  product: {},
+  product: {
+    product_id: '',
+    price_id: '',
+    product_price: 0,
+    product_desc: '',
+    product_name: '',
+    product_img: [''],
+    metadata: {},
+  },
   quantityCount: 1,
   totalAmount: 0,
 
@@ -91,18 +105,42 @@ export const useCart = create<CartState>()((set, get) => ({
 }));
 
 interface ModalState {
+  showSideNav: boolean;
+  setShowSideNav: () => void;
   isModalOpen: boolean;
-  setIsModalOpen: () => void;
+  setModalOpen: () => void;
+  isSideCartOpen: boolean;
+  setSideCartOpen: () => void;
 }
 
 export const useModal = create<ModalState>()((set, get) => ({
   isModalOpen: false,
+  isSideCartOpen: false,
+  showSideNav: false,
 
-  setIsModalOpen: () => {
+  setModalOpen: () => {
     set((state) => {
       return {
         ...state,
         isModalOpen: !state.isModalOpen,
+      };
+    });
+  },
+
+  setSideCartOpen: () => {
+    set((state) => {
+      return {
+        ...state,
+        isSideCartOpen: !state.isSideCartOpen,
+      };
+    });
+  },
+
+  setShowSideNav: () => {
+    set((state) => {
+      return {
+        ...state,
+        showSideNav: !state.showSideNav,
       };
     });
   },
