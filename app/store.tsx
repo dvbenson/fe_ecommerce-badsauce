@@ -3,6 +3,7 @@ import { create } from 'zustand';
 export interface CartItem {
   quantity: number;
   price_id: string;
+  product_img: string[];
 }
 
 export interface Product {
@@ -20,12 +21,16 @@ interface CartState {
   product: Product;
   quantityCount: number;
   totalAmount: number | string;
+  selectedItemIndex: number | null;
+  setSelectedItemIndex: (params: { itemIndex: number | null }) => void;
   setProduct: (params: { newProduct: Product }) => void;
   setQuantityCount: (params: { newQuantityCount: number }) => void;
   setTotalAmount: (params: { newTotalAmount: number | string }) => void;
   addItemToCart: (params: { newItem: CartItem }) => void;
   removeItemFromCart: (params: { itemIndex: number }) => void;
   emptyCart: () => void;
+  increaseItemQuantity: (params: { itemIndex: number }) => void;
+  decreaseItemQuantity: (params: { itemIndex: number }) => void;
 }
 
 export const useCart = create<CartState>()((set, get) => ({
@@ -41,6 +46,17 @@ export const useCart = create<CartState>()((set, get) => ({
   },
   quantityCount: 1,
   totalAmount: 0,
+  selectedItemIndex: null,
+
+  setSelectedItemIndex: (params) => {
+    const { itemIndex } = params;
+    set((state) => {
+      return {
+        ...state,
+        selectedItemIndex: itemIndex,
+      };
+    });
+  },
 
   setProduct: (params) => {
     const { newProduct } = params;
@@ -102,6 +118,40 @@ export const useCart = create<CartState>()((set, get) => ({
       };
     });
   },
+
+  increaseItemQuantity: (params) => {
+    const { itemIndex } = params;
+    set((state) => {
+      const newCart = state.cart.map((element, elementIndex) => {
+        if (elementIndex === itemIndex) {
+          return { ...element, quantity: element.quantity + 1 };
+        } else {
+          return element;
+        }
+      });
+      return {
+        ...state,
+        cart: newCart,
+      };
+    });
+  },
+
+  decreaseItemQuantity: (params) => {
+    const { itemIndex } = params;
+    set((state) => {
+      const newCart = state.cart.map((element, elementIndex) => {
+        if (elementIndex === itemIndex) {
+          return { ...element, quantity: element.quantity - 1 };
+        } else {
+          return element;
+        }
+      });
+      return {
+        ...state,
+        cart: newCart,
+      };
+    });
+  },
 }));
 
 interface ModalState {
@@ -145,3 +195,7 @@ export const useModal = create<ModalState>()((set, get) => ({
     });
   },
 }));
+
+// interface utilityState {}
+
+// export const useUtility = create<utilityState>()((set, get) => ({}));

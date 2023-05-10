@@ -17,10 +17,13 @@ export default function ProductPage() {
   const addItemToCart = useCart((state) => state.addItemToCart);
   const cart = useCart((state) => state.cart);
 
+  //TODO: add logic so cart is checked against new item and if it already exists (by price_id) increase quantity by quantity
+  // may be new function that is called first then runs handleAddToCart logic
   function handleAddToCart() {
     const newItem: CartItem = {
       quantity: quantityCount,
       price_id: product.price_id,
+      product_img: product.product_img,
     };
     addItemToCart({ newItem });
   }

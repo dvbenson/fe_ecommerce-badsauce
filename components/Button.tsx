@@ -1,11 +1,12 @@
 import React from 'react';
 
 interface ButtonProps {
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   label?: string | React.ReactNode;
   variant?: 'primary' | 'secondary' | 'tertiary';
   className?: string;
   disabled?: boolean;
+  children?: React.ReactNode;
 }
 
 export default function Button({
