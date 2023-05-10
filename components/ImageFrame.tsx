@@ -6,6 +6,7 @@ interface ImageFrameProps {
   className?: string;
   width?: number;
   height?: number;
+  priority?: boolean;
 }
 
 export default function ImageFrame({
@@ -14,6 +15,7 @@ export default function ImageFrame({
   height = 300,
   width = 300,
   className,
+  priority = false,
 }: ImageFrameProps) {
   return (
     <div className={className}>
@@ -22,7 +24,7 @@ export default function ImageFrame({
         alt={alt}
         height={height}
         width={width}
-        priority={true}
+        priority={priority}
         className="aspect-square object-cover"
       />
     </div>

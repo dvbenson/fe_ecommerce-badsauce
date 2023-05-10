@@ -9,7 +9,7 @@ export default function page() {
     <main>
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-2xl font-bold">Checkout</h1>
-        <p>{cart}</p>
+        <p>CART ITEMS GO HERE</p>
       </div>
     </main>
   );

@@ -26,7 +26,6 @@ export default function Navbar() {
   };
 
   const handleSideCart = () => {
-    console.log('handleSideCart called');
     setSideCartOpen();
   };
 

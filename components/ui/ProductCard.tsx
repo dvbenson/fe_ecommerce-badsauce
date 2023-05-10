@@ -2,6 +2,7 @@
 import { useCart } from '../../app/store';
 import { CardProps } from '../../app/shop/page';
 import ImageFrame from '../ImageFrame';
+import { Product } from 'app/store';
 
 export default function ProductCard({
   product_id,
@@ -18,7 +19,7 @@ export default function ProductCard({
   ]);
 
   function onProductClick() {
-    const newProduct = {
+    const newProduct: Product = {
       product_id,
       price_id,
       product_price,
@@ -42,6 +43,7 @@ export default function ProductCard({
         src={product_img[0]}
         alt={product_name}
         className="h-full w-full cursor-pointer items-center justify-center overflow-hidden shadow hover:shadow-lg"
+        priority={true}
       />
       <div className="absolute right-0 top-0 p-2">
         <button disabled className="rounded-full bg-white p-2 font-bold shadow">

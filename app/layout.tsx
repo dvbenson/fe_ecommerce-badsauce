@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styles/globals.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import { config } from '@fortawesome/fontawesome-svg-core';
-config.autoAddCss = false;
+// import { config } from '@fortawesome/fontawesome-svg-core';
+// config.autoAddCss = false;
 
 export default async function RootLayout(props: {
   children: React.ReactNode;

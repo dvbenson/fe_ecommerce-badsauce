@@ -4,12 +4,13 @@ import Link from 'next/link';
 import DefaultLayout from '../../components/ui/DefaultLayout';
 import ProductCard from '../../components/ui/ProductCard';
 import { v4 as uuidv4 } from 'uuid';
+import { Product } from 'app/store';
 
-export interface CardProps {
+export interface CardProps extends Product {
   product_id: string;
   price_id: string;
-  product_price: number | null;
-  product_desc: string | null;
+  product_price: number;
+  product_desc: any;
   product_name: string;
   product_img: string[];
   metadata: object;
@@ -25,14 +26,14 @@ export default async function Shop() {
           <div className="grid w-full  max-w-[1000px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {products.map((product) => {
               const price_id = product.id;
-              const product_price = product.unit_amount;
+              const product_price = product.unit_amount || 0;
               const product_info = product.product;
               const {
-                description: product_desc,
-                name: product_name,
-                id: product_id,
-                images: product_img,
-                metadata,
+                description: product_desc = '',
+                name: product_name = '',
+                id: product_id = '',
+                images: product_img = [],
+                metadata = {},
               } = product_info;
               return (
                 <Link href={`/shop/products/${product_id}`}>

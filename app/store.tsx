@@ -5,11 +5,11 @@ export interface CartItem {
   price_id: string;
 }
 
-interface Product {
+export interface Product {
   product_id: string;
   price_id: string;
   product_price: number;
-  product_desc: string;
+  product_desc: any;
   product_name: string;
   product_img: string[];
   metadata: object;
