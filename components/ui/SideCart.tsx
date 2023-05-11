@@ -2,8 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useModal } from 'app/store';
-import { useCart } from 'app/store';
+import { useModal, useCart } from 'app/store';
 import Button from '@/components/Button';
 import ScrollArea from '@/components/ScrollArea';
 
@@ -13,11 +12,24 @@ interface SideCartProps {
 
 export default function SideCart({ handleSideCart }: SideCartProps) {
   const router = useRouter();
+  const cart = useCart((state) => state.cart);
   const emptyCart = useCart((state) => state.emptyCart);
   const [isSideCartOpen, setSideCartOpen] = useModal((state) => [
     state.isSideCartOpen,
     state.setSideCartOpen,
   ]);
+
+  async function checkout() {
+    const lineItems = cart.map((item) => {
+      return { price: item.price_id, quantity: item.quantity };
+    });
+    const response = await fetch('/api/stripe_checkout', {
+      method: 'POST',
+      body: JSON.stringify({ lineItems }),
+    });
+    const data = await response.json();
+    router.push(data.session.url);
+  }
 
   const sideCartRef = useRef<HTMLDivElement>(null);
 
@@ -84,12 +96,12 @@ export default function SideCart({ handleSideCart }: SideCartProps) {
                 label={'CONTINUE BROWSING'}
                 className="h-8 w-52 rounded-full bg-black text-center font-semibold text-white hover:shadow-lg"
               />
-              <Link href="/shop/checkout">
-                <Button
-                  label={'CHECKOUT'}
-                  className="h-8 w-52 rounded-full bg-green-600 text-center font-semibold text-white hover:opacity-75"
-                />
-              </Link>
+
+              <Button
+                label={'CHECKOUT'}
+                onClick={() => checkout()}
+                className="h-8 w-52 rounded-full bg-green-600 text-center font-semibold text-white hover:opacity-75"
+              />
             </div>
           </div>
         </div>

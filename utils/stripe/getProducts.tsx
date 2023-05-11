@@ -10,7 +10,7 @@ export async function getStripeProducts() {
       expand: ['data.product'],
     });
 
-  const prices = res.data;
+  const prices = res.data.reverse();
 
   const pricesWithProduct: PriceWithProduct[] = prices.map((price) => ({
     ...price,

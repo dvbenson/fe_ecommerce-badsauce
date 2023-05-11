@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
-  productModal: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <html>
@@ -15,7 +15,7 @@ export default async function RootLayout(props: {
       </head>
       <body>
         {props.children}
-        {props.productModal}
+        {props.modal}
       </body>
     </html>
   );
