@@ -38,7 +38,7 @@ export default function SideNavBar({ handleNav, handleCart }: NavBarProps) {
               href={pathname === '/shop' ? '/' : '/#home'}
               label={'Home'}
               active={pathname === '/shop'}
-              className="cursor-pointer py-4"
+              className="cursor-pointer py-4 font-sans font-medium"
               onClick={() => setShowSideNav()}
             />
             <NavItem
@@ -46,7 +46,7 @@ export default function SideNavBar({ handleNav, handleCart }: NavBarProps) {
               href={pathname === '/shop' ? '/#about' : '#home'}
               label={'About'}
               active={pathname === '/shop'}
-              className="cursor-pointer py-4"
+              className="cursor-pointer py-4 font-sans font-medium"
               onClick={() => setShowSideNav()}
             />
             <NavItem
@@ -54,14 +54,14 @@ export default function SideNavBar({ handleNav, handleCart }: NavBarProps) {
               href={pathname === '/shop' ? '/#contact' : '#contact'}
               label={'Contact'}
               active={pathname === '/shop'}
-              className="cursor-pointer py-4"
+              className="cursor-pointer py-4 font-sans font-medium"
               onClick={() => setShowSideNav()}
             />
             <NavItem
               key={uuidv4()}
               href="/shop"
               label="Shop"
-              className="cursor-pointer py-4"
+              className="cursor-pointer py-4 font-sans font-medium"
               onClick={() => setShowSideNav()}
             />
             <li key={uuidv4()} className="py-4">

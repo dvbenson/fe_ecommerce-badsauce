@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '@/components/Icon';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
@@ -13,14 +13,13 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FontAwesomeIcon
-                icon={faInstagram}
-                className="text-2xl font-bold"
-              />
+              <Icon icon={faInstagram} className="text-3xl font-medium" />
             </Link>
           </li>
-          <li className="text-md">hello@badsauce.co.uk</li>
-          <li className="text-sm">© 2023 All Rights Reserved</li>
+          <li className="text-md font-sans font-medium">
+            hello@badsauce.co.uk
+          </li>
+          <li className="font-sans text-sm">© 2023 All Rights Reserved</li>
         </ul>
       </div>
     </footer>

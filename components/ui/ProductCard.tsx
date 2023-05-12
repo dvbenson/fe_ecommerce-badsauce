@@ -45,11 +45,11 @@ export default function ProductCard({
         className="h-full w-full cursor-pointer items-center justify-center overflow-hidden shadow hover:shadow-lg"
         priority={true}
       />
-      <div className="absolute right-0 top-0 p-2">
+      {/* <div className="absolute right-0 top-0 p-2">
         <button disabled className="rounded-full bg-white p-2 font-bold shadow">
           {product_name}
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

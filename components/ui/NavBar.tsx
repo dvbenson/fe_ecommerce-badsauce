@@ -36,7 +36,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed z-50 h-24 w-full border-t-0 bg-white shadow">
+    <nav className="fixed z-50 h-24 w-full border-t-0 bg-white">
       <div className="2x1:px-16 flex h-full w-full items-center justify-between px-4 ">
         <Logo />
         <div className="mr-4 hidden lg:flex">
@@ -46,27 +46,32 @@ export default function Navbar() {
               href={pathname === '/shop' ? '/' : '/#home'}
               label={'Home'}
               active={pathname === '/shop'}
-              className="p-4"
+              className="p-4 font-sans font-medium hover:underline"
             />
             <NavItem
               key={uuidv4()}
               href={pathname === '/shop' ? '/#about' : '#home'}
               label={'About'}
               active={pathname === '/shop'}
-              className="p-4"
+              className="p-4 font-sans font-medium"
             />
             <NavItem
               key={uuidv4()}
               href={pathname === '/shop' ? '/#contact' : '#contact'}
               label={'Contact'}
               active={pathname === '/shop'}
-              className="p-4"
+              className="p-4 font-sans font-medium"
             />
-            <NavItem key={uuidv4()} href="/shop" label="Shop" className="p-4" />
-            <li key={uuidv4()} className="p-4">
+            <NavItem
+              key={uuidv4()}
+              href="/shop"
+              label="Shop"
+              className="p-4 font-sans font-medium"
+            />
+            <li key={uuidv4()} className="font-sans font-medium">
               <div
                 onClick={() => handleSideCart()}
-                className="group relative grid cursor-pointer place-items-center"
+                className="group relative grid cursor-pointer place-items-center p-3"
               >
                 <Icon
                   icon={faCartShopping}
