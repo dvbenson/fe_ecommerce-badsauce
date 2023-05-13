@@ -10,9 +10,14 @@ import { faXmark, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 interface NavBarProps {
   handleNav: (e: React.MouseEvent<HTMLDivElement>) => void;
   handleCart: () => number;
+  handleSideCart: () => void;
 }
 
-export default function SideNavBar({ handleNav, handleCart }: NavBarProps) {
+export default function SideNavBar({
+  handleNav,
+  handleCart,
+  handleSideCart,
+}: NavBarProps) {
   const [showSideNav, setShowSideNav] = useModal((state) => [
     state.showSideNav,
     state.setShowSideNav,
@@ -62,7 +67,7 @@ export default function SideNavBar({ handleNav, handleCart }: NavBarProps) {
               href={pathname === '/shop' ? '/' : '/#home'}
               label={'Home'}
               active={pathname === '/shop'}
-              className=" ml-4 cursor-pointer py-4 font-sans font-medium hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
+              className=" font-lg ml-4 cursor-pointer py-4 font-sans  font-semibold hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <NavItem
@@ -70,7 +75,7 @@ export default function SideNavBar({ handleNav, handleCart }: NavBarProps) {
               href={pathname === '/shop' ? '/#about' : '#home'}
               label={'About'}
               active={pathname === '/shop'}
-              className="ml-4  cursor-pointer py-4 font-sans font-medium hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
+              className="font-lg  ml-4 cursor-pointer py-4 font-sans  font-semibold hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <NavItem
@@ -78,18 +83,25 @@ export default function SideNavBar({ handleNav, handleCart }: NavBarProps) {
               href={pathname === '/shop' ? '/#contact' : '#contact'}
               label={'Contact'}
               active={pathname === '/shop'}
-              className="ml-4  cursor-pointer py-4 font-sans font-medium hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
+              className="font-lg  ml-4 cursor-pointer py-4 font-sans font-semibold  hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <NavItem
               key={uuidv4()}
               href="/shop"
               label="Shop"
-              className="ml-4 cursor-pointer py-4 font-sans font-medium hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
+              className="font-lg ml-4 cursor-pointer py-4 font-sans font-semibold  hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <li key={uuidv4()} className="ml-4 py-4">
-              <div className="relative items-center">
+              <div
+                className="relative items-center"
+                onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                  e.stopPropagation();
+                  handleNav(e);
+                  handleSideCart();
+                }}
+              >
                 <Icon
                   icon={faCartShopping}
                   className="cursor-pointer text-3xl group-hover:text-slate-500"

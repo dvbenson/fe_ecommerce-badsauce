@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useModal, useCart } from 'app/store';
 import Button from '@/components/Button';
 import ScrollArea from '@/components/ScrollArea';
+import Icon from '@/components/Icon';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 interface SideCartProps {
   handleSideCart: () => void;
@@ -32,8 +34,11 @@ export default function SideCart({ handleSideCart }: SideCartProps) {
 
   const sideCartRef = useRef<HTMLDivElement>(null);
 
-  const handleOutsideClick = (event: any) => {
-    if (sideCartRef.current && !sideCartRef.current.contains(event.target)) {
+  const handleOutsideClick = (e: MouseEvent) => {
+    if (
+      sideCartRef.current &&
+      !sideCartRef.current.contains(e.target as Node)
+    ) {
       handleSideCart();
     }
   };
@@ -48,7 +53,7 @@ export default function SideCart({ handleSideCart }: SideCartProps) {
 
     return () => {
       document.body.classList.remove('overflow-hidden');
-      window.addEventListener('mousedown', handleOutsideClick);
+      window.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [isSideCartOpen]);
 
@@ -68,39 +73,38 @@ export default function SideCart({ handleSideCart }: SideCartProps) {
     >
       <div className="grid-col-1  grid h-full">
         <div className="flex h-full flex-col items-center justify-center py-4">
-          <h1 className="w-2/3 border-b-4 text-center text-3xl leading-relaxed">
+          <h1 className="mr-4 w-2/3 border-b-4 text-center font-heading text-3xl leading-relaxed">
             Your Cart
           </h1>
 
           <div className="relative w-full overflow-y-auto">
             <ScrollArea />
           </div>
-          <div className="mt-auto flex flex-col justify-end">
-            <div className="grid-col-1 grid  gap-2">
-              {/* TODO: add close button for side cart on mobile */}
-              {/* <div className="flex flex-row justify-between">
-                <Button
-                  onClick={handleSideCart}
-                  label={'CLOSE'}
-                  className="h-8 w-24 rounded-full bg-red-600 text-center font-semibold text-white hover:shadow-lg"
-                />
-                <Button
-                  onClick={() => emptyCart()}
-                  label={'EMPTY'}
-                  className="h-8 w-24 rounded-full bg-red-600 text-center font-semibold text-white hover:shadow-lg"
-                />
-              </div> */}
+          <div className="mt-auto flex flex-row justify-end gap-4">
+            <div className="grid-col-1 grid gap-2">
               <Button
                 onClick={() => backToShop()}
-                label={'CONTINUE BROWSING'}
-                className="h-8 w-52 rounded-full bg-black text-center font-semibold text-white hover:shadow-lg"
+                label={'BACK TO SHOP'}
+                className="h-8 w-40 rounded-full bg-black text-center font-sans font-semibold text-white hover:shadow-lg"
               />
-
               <Button
                 label={'CHECKOUT'}
                 onClick={() => checkout()}
-                className="h-8 w-52 rounded-full bg-green-600 text-center font-semibold text-white hover:opacity-75"
+                className="h-8 w-40 rounded-full bg-green-600 text-center font-sans font-semibold text-white hover:opacity-75"
               />
+            </div>
+            <div className="grid-col-1 grid">
+              <Button
+                onClick={() => emptyCart()}
+                label={<Icon icon={faShoppingCart} className="text-3xl" />}
+                className="text-black shadow-none"
+              />
+              <p className="text-center font-sans text-xs font-semibold">
+                Empty
+              </p>
+              <p className="text-center font-sans text-xs font-semibold">
+                Cart
+              </p>
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ interface NavItemProps {
   label: string;
   className: string;
   active?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
 }
 
 export default function NavItem({

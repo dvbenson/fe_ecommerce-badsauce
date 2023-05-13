@@ -15,7 +15,7 @@ export default function ScrollArea() {
   ]);
   const removeItemFromCart = useCart((state) => state.removeItemFromCart);
   const increaseItemQuantity = useCart((state) => state.increaseItemQuantity);
-  //TODO: if item reduced to 0, remove item from cart
+  //TODO: Make middle of button span unclickable to cursor events to stop triggering delete item
   const decreaseItemQuantity = useCart((state) => state.decreaseItemQuantity);
 
   const handleShowCartButtons = (index: number | null) => {
@@ -30,7 +30,7 @@ export default function ScrollArea() {
     <div className="flex flex-col">
       <div className="h-full max-h-[calc(100vh-16rem)] snap-proximity overflow-y-auto">
         {cart.length === 0 ? (
-          <p className="mt-52 text-center text-lg text-slate-500">
+          <p className="mt-52 text-center font-sans text-base text-slate-500">
             Your cart is currently empty
           </p>
         ) : (
@@ -38,63 +38,71 @@ export default function ScrollArea() {
             {cart.map((item: any, itemIndex: number) => (
               <li key={uuidv4()} className="snap-center">
                 <div
-                  className="flex items-center"
+                  className="mr-4 flex flex-col items-center justify-center gap-2"
                   onClick={() => handleShowCartButtons(itemIndex)}
                 >
-                  <div className="mr-4 flex flex-col items-center gap-2">
-                    <Button
-                      className=" h-10 w-10 bg-black px-3 py-1 text-white"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        increaseItemQuantity({ itemIndex });
-                      }}
-                      label={<Icon icon={faPlus} className="" />}
-                    />
-                    <div className="pointer-events-none grid aspect-square h-10 w-10 place-items-center rounded-full  bg-slate-600 px-3 py-1  text-white shadow">
-                      <span>{item.quantity}</span>
-                    </div>
-                    <Button
-                      className="h-10 w-10 bg-black px-3 py-1 text-white"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        decreaseItemQuantity({ itemIndex });
-                      }}
-                      label={<Icon icon={faMinus} className="" />}
-                    />
-                  </div>
-                  <div className="relative mr-8">
-                    <ImageFrame
-                      src={item.product_img[0]}
-                      alt={item.price_id}
-                      height={150}
-                      width={150}
-                      className={
-                        typeof selectedItemIndex === 'number' &&
-                        selectedItemIndex === itemIndex
-                          ? 'opacity-25'
-                          : ''
-                      }
-                    />
+                  <div className="relative">
+                    <div className="pointer-events-none relative shadow">
+                      <ImageFrame
+                        src={item.product_img[0]}
+                        alt={item.price_id}
+                        height={150}
+                        width={150}
+                        className={
+                          typeof selectedItemIndex === 'number' &&
+                          selectedItemIndex === itemIndex
+                            ? 'opacity-25'
+                            : ''
+                        }
+                      />
 
-                    {selectedItemIndex === itemIndex && (
-                      <div className="absolute inset-0 z-50 grid place-items-center bg-transparent">
-                        <div className="grid-col-1 grid items-center justify-center p-4">
-                          <Button
-                            className="text-center font-semibold text-black"
-                            label={
+                      {selectedItemIndex === itemIndex && (
+                        <div className="absolute inset-0 z-50 grid place-items-center bg-transparent">
+                          <div className="grid-col-1  grid items-center justify-center p-4">
+                            <div
+                              className="pointer-events-auto"
+                              onClick={() => {
+                                removeItemFromCart({ itemIndex });
+                                handleShowCartButtons(itemIndex);
+                              }}
+                            >
                               <Icon
                                 icon={faTrashAlt}
-                                className="text-6xl shadow-md"
+                                className="pointer-events-auto text-6xl"
                               />
-                            }
-                            onClick={() => {
-                              removeItemFromCart({ itemIndex });
-                              handleShowCartButtons(itemIndex);
-                            }}
-                          />
+                            </div>
+                          </div>
                         </div>
+                      )}
+                    </div>
+                    <div className="absolute bottom-0 left-0 flex w-[120px] -translate-y-1 translate-x-4 transform flex-row place-items-center justify-between rounded-full bg-neutral-300 opacity-50 shadow hover:opacity-100">
+                      <Button
+                        className="pointer-events-auto h-6 w-10 border-r-2 px-0 py-0 text-black shadow-none"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (item.quantity === 1) {
+                            removeItemFromCart({ itemIndex });
+                          } else {
+                            decreaseItemQuantity({ itemIndex });
+                          }
+                        }}
+                        label={<Icon icon={faMinus} className="" />}
+                      />
+                      <div className="pointer-events-auto grid aspect-square h-6 w-24 place-items-center bg-neutral-200 p-0 font-sans  font-medium  text-black shadow-inner ">
+                        <span className="pointer-events-auto">
+                          {item.quantity}
+                        </span>
                       </div>
-                    )}
+
+                      <Button
+                        className="pointer-events-auto h-6 w-10  border-l-2 px-0 py-0 text-black shadow-none"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          increaseItemQuantity({ itemIndex });
+                        }}
+                        label={<Icon icon={faPlus} className="" />}
+                      />
+                    </div>
                   </div>
                 </div>
               </li>

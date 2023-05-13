@@ -9,7 +9,15 @@ export default function About() {
         id="about"
         className="grid-col-1 my-8 grid max-w-[280px] gap-2 sm:max-w-[560px]"
       >
-        <h2 className="font-heading text-2xl">WE GOT THE SAUCE!</h2>
+        <div className="w-100vh flex flex-row items-center justify-center">
+          <div className="relative min-h-[25px] w-full max-w-[225px] ">
+            <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />
+            <h2 className="absolute bottom-0 left-0 p-1 font-heading text-2xl">
+              WE GOT THE SAUCE!
+            </h2>
+          </div>
+        </div>
+
         <p className="text-left font-sans text-base leading-relaxed">
           Unleash the flavour, ignite your taste buds. Our artisanal,
           handcrafted hot sauces are here to add a dash of zing to your everyday
@@ -20,10 +28,18 @@ export default function About() {
           Our sauce is naturally fermented for 28 days, mashed by hand, squeezed
           by hand and poured by hand.
         </p>
-        <p className=" text-left font-sans">It's raw, natural and bites.</p>
+        <p className=" text-center font-sans">It's raw, natural and bites.</p>
       </div>
       <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
-        <h2 className="font-heading text-2xl">OUR SAUCE.</h2>
+        <div className="w-100vh flex flex-row items-center justify-center">
+          <div className="relative min-h-[25px] w-full max-w-[137px] ">
+            <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />
+            <h2 className="absolute bottom-0 left-0 p-1 font-heading text-2xl">
+              OUR SAUCE.
+            </h2>
+          </div>
+        </div>
+        {/* <h2 className="font-heading text-2xl">OUR SAUCE.</h2> */}
         <p className="text-left font-sans text-base leading-relaxed">
           At BADSAUCE, we believe that hot sauce should do more than just burn
           your tongue. Our sauces are crafted to enhance your food's flavour and
@@ -34,7 +50,15 @@ export default function About() {
         <p className="text-left font-sans"></p>
       </div>
       <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
-        <h2 className="font-heading text-2xl">OUR VALUES.</h2>
+        <div className="w-100vh flex flex-row items-center justify-center">
+          <div className="relative min-h-[25px] w-full max-w-[145px] ">
+            <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />
+            <h2 className="absolute bottom-0 left-0 p-1 font-heading text-2xl">
+              OUR VALUES.
+            </h2>
+          </div>
+        </div>
+        {/* <h2 className="font-heading text-2xl">OUR VALUES.</h2> */}
         <p className="text-left font-sans text-base leading-relaxed">
           <span className="underline decoration-slate-400 decoration-2 underline-offset-2">
             All-Natural
@@ -53,7 +77,16 @@ export default function About() {
         </p>
       </div>
       <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
-        <h2 className="font-heading text-2xl">WHY CHOOSE US?</h2>
+        <div className="w-100vh flex flex-row items-center justify-center">
+          <div className="relative min-h-[25px] w-full max-w-[205px] ">
+            <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />
+            <h2 className="absolute bottom-0 left-0 p-1 font-heading text-2xl">
+              WHY CHOOSE US?
+            </h2>
+          </div>
+        </div>
+
+        {/* <h2 className="font-heading text-2xl">WHY CHOOSE US?</h2> */}
         <p className="text-left font-sans text-base leading-relaxed">
           <span className="underline decoration-slate-400 decoration-2 underline-offset-2">
             Quality
@@ -80,7 +113,15 @@ export default function About() {
         </p>
       </div>
       <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
-        <h2 className="font-heading text-2xl">LIKE WHAT WE DO?</h2>
+        <div className="w-100vh flex flex-row items-center justify-center">
+          <div className="relative min-h-[25px] w-full max-w-[217px] ">
+            <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />
+            <h2 className="absolute bottom-0 left-0 p-1 font-heading text-2xl">
+              LIKE WHAT WE DO?
+            </h2>
+          </div>
+        </div>
+        {/* <h2 className="font-heading text-2xl">LIKE WHAT WE DO?</h2> */}
         <p className="text-left font-sans text-base leading-relaxed">
           Ready to experience a sauce that truly slaps? Unleash the full
           potential of your meals with BADSAUCE naturally fermented hot sauces.
@@ -91,7 +132,7 @@ export default function About() {
       <Link href="/shop">
         <Button
           label="Shop Now"
-          className="animate-bounce bg-black font-sans font-semibold text-white shadow-lg"
+          className="animate-bounce rounded-full bg-black px-3 py-1 font-sans font-semibold text-white shadow-lg"
         />
       </Link>
     </div>

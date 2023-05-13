@@ -16,7 +16,7 @@ export default function Button({
   className,
   disabled,
 }: ButtonProps) {
-  const baseClasses = 'py-1 px-4 rounded-full shadow-md';
+  const baseClasses = '';
 
   const primaryClasses = '';
   const secondaryClasses = '';

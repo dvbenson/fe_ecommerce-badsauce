@@ -47,31 +47,34 @@ export default function Navbar() {
               href={pathname === '/shop' ? '/' : '/#home'}
               label={'Home'}
               active={pathname === '/shop'}
-              className="p-4 font-sans font-semibold hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
+              className="p-4 font-sans font-semibold hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
             />
             <NavItem
               key={uuidv4()}
               href={pathname === '/shop' ? '/#about' : '#home'}
               label={'About'}
               active={pathname === '/shop'}
-              className="p-4 font-sans font-semibold hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
+              className="p-4 font-sans font-semibold hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
             />
             <NavItem
               key={uuidv4()}
               href={pathname === '/shop' ? '/#contact' : '#contact'}
               label={'Contact'}
               active={pathname === '/shop'}
-              className="p-4 font-sans font-semibold hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
+              className="p-4 font-sans font-semibold hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
             />
             <NavItem
               key={uuidv4()}
               href="/shop"
               label="Shop"
-              className="p-4 font-sans font-semibold hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
+              className="p-4 font-sans font-semibold hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
             />
             <li key={uuidv4()} className="font-sans font-medium">
               <div
-                onClick={() => handleSideCart()}
+                onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                  e.stopPropagation();
+                  handleSideCart();
+                }}
                 className="group relative grid cursor-pointer place-items-center p-3"
               >
                 <Icon
@@ -92,7 +95,11 @@ export default function Navbar() {
         </div>
       </div>
       {isSideCartOpen && <SideCart handleSideCart={handleSideCart} />}
-      <SideNavBar handleNav={handleNav} handleCart={handleCart} />
+      <SideNavBar
+        handleNav={handleNav}
+        handleCart={handleCart}
+        handleSideCart={handleSideCart}
+      />
     </nav>
   );
 }

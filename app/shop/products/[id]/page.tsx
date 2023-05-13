@@ -66,17 +66,16 @@ export default function ProductPage() {
               </div>
               <div className="grid-col-1 grid place-items-center gap-2">
                 <Button
+                  onClick={handleBackToShop}
+                  label={'BACK TO SHOP'}
+                  className="h-8 w-52 rounded-full bg-black font-sans font-semibold text-white shadow"
+                />
+                <Button
                   onClick={() => {
                     handleAddToCart();
                     setQuantityCount({ newQuantityCount: 1 });
                   }}
                   label={'ADD TO CART'}
-                  className="h-8 w-52 rounded-full bg-black font-sans font-semibold text-white shadow"
-                />
-
-                <Button
-                  onClick={handleBackToShop}
-                  label={'BACK TO SHOP'}
                   className="h-8 w-52 rounded-full bg-green-600 font-sans font-semibold text-white shadow"
                 />
               </div>

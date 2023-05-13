@@ -93,7 +93,7 @@ export default function ContactForm() {
         ></textarea>
         <div className="mt-8 items-center text-center">
           <Button
-            className="font-semi-bold bg-black font-heading text-white shadow-lg hover:shadow-xl"
+            className="font-semi-bold rounded-full bg-black px-3 py-1 font-sans font-semibold text-white shadow-lg hover:shadow-xl"
             label="Send"
           />
         </div>
