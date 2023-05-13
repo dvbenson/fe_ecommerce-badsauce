@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useModal, useCart } from 'app/store';
 import Button from '@/components/Button';

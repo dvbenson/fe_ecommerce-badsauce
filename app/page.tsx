@@ -10,15 +10,15 @@ export default function Home() {
       <DefaultLayout>
         <main className="mx-auto flex min-h-screen flex-col p-4 text-center">
           <ScrollOffset id="home" />
-          <section id="home" className="mt-24 flex-grow">
+          <section className="mt-24 flex-grow">
             <Hero />
           </section>
           <ScrollOffset id="about" />
-          <section id="about" className="flex-grow">
+          <section className="flex-grow">
             <About />
           </section>
           <ScrollOffset id="contact" />
-          <section id="contact" className="flex-grow">
+          <section className="flex-grow">
             <Contact />
           </section>
         </main>

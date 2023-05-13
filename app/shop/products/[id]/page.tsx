@@ -1,6 +1,7 @@
 'use client';
 import { useCart } from 'app/store';
-import React from 'react';
+import { useRouter } from 'next/navigation';
+import React, { ReactEventHandler } from 'react';
 import ImageFrame from '@/components/ImageFrame';
 import DefaultLayout from '@/components/ui/DefaultLayout';
 import ProductDetails from '@/components/ProductDetails';
@@ -9,6 +10,7 @@ import Button from '@/components/Button';
 import { CartItem } from 'app/store';
 
 export default function ProductPage() {
+  const router = useRouter();
   const product = useCart((state) => state.product);
   const [quantityCount, setQuantityCount] = useCart((state) => [
     state.quantityCount,
@@ -28,21 +30,28 @@ export default function ProductPage() {
     addItemToCart({ newItem });
   }
 
+  const handleBackToShop = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setQuantityCount({ newQuantityCount: 1 });
+    router.back();
+  };
+
   return (
     <DefaultLayout>
-      <main className="flex min-h-screen items-center justify-center sm:relative">
-        <div className="grid-col-1 sm:grid-col-2 mt-24 grid max-w-[1000px] sm:absolute sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:transform">
-          <div className=" flex flex-col items-center justify-center gap-4 p-4 sm:flex-row">
+      <main className="mb-16 flex min-h-screen items-center justify-center sm:relative">
+        <div className="grid-col-1 sm:grid-col-2 mt-24 grid max-w-[1000px] sm:absolute sm:left-1/2 sm:top-1/2 sm:mt-8 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:transform">
+          <div className="flex flex-col items-center justify-center gap-4 p-4 sm:flex-row sm:gap-20">
             <ImageFrame
               src={product.product_img[0]}
               alt={product.product_name}
-              width={500}
-              height={500}
-              className={'min-w-[300px] sm:min-w-[400px] md:min-w-[500px]'}
+              width={300}
+              height={300}
+              className={'min-w-[300px]'}
             />
+
             <div
               id="non-img-container"
-              className="grid-col-1 grid items-center justify-center gap-4"
+              className="grid-col-1 grid place-items-center gap-4 p-4"
             >
               <ProductDetails
                 productName={product.product_name}
@@ -55,17 +64,20 @@ export default function ProductPage() {
               >
                 <QuantityControl product_price={product.product_price} />
               </div>
-              <div
-                id="button-add-to-cart"
-                className="flex justify-center gap-4"
-              >
+              <div className="grid-col-1 grid place-items-center gap-2">
                 <Button
                   onClick={() => {
                     handleAddToCart();
                     setQuantityCount({ newQuantityCount: 1 });
                   }}
                   label={'ADD TO CART'}
-                  className="h-16 w-52 rounded-full bg-black font-bold text-white shadow-md"
+                  className="h-8 w-52 rounded-full bg-black font-sans font-semibold text-white shadow"
+                />
+
+                <Button
+                  onClick={handleBackToShop}
+                  label={'BACK TO SHOP'}
+                  className="h-8 w-52 rounded-full bg-green-600 font-sans font-semibold text-white shadow"
                 />
               </div>
             </div>

@@ -21,7 +21,8 @@ export default function Navbar() {
   ]);
   const pathname = usePathname();
 
-  const handleNav = () => {
+  const handleNav = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     setShowSideNav();
   };
 
@@ -46,27 +47,27 @@ export default function Navbar() {
               href={pathname === '/shop' ? '/' : '/#home'}
               label={'Home'}
               active={pathname === '/shop'}
-              className="p-4 font-sans font-medium hover:underline"
+              className="p-4 font-sans font-semibold hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
             />
             <NavItem
               key={uuidv4()}
               href={pathname === '/shop' ? '/#about' : '#home'}
               label={'About'}
               active={pathname === '/shop'}
-              className="p-4 font-sans font-medium"
+              className="p-4 font-sans font-semibold hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
             />
             <NavItem
               key={uuidv4()}
               href={pathname === '/shop' ? '/#contact' : '#contact'}
               label={'Contact'}
               active={pathname === '/shop'}
-              className="p-4 font-sans font-medium"
+              className="p-4 font-sans font-semibold hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
             />
             <NavItem
               key={uuidv4()}
               href="/shop"
               label="Shop"
-              className="p-4 font-sans font-medium"
+              className="p-4 font-sans font-semibold hover:underline hover:decoration-slate-400 hover:decoration-4 hover:underline-offset-4"
             />
             <li key={uuidv4()} className="font-sans font-medium">
               <div
@@ -78,8 +79,8 @@ export default function Navbar() {
                   className="cursor-pointer text-3xl group-hover:text-slate-500"
                 />
                 {cart.length > 0 && (
-                  <span className="pointer-events-none absolute right-0 top-0 grid aspect-square h-6 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-red-600  text-white shadow">
-                    <p className="text-sm font-medium">{handleCart()}</p>
+                  <span className=" pointer-events-none absolute right-2.5 top-1/4 grid aspect-square h-6 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-blue-400  font-sans text-white shadow">
+                    <p>{handleCart()}</p>
                   </span>
                 )}
               </div>

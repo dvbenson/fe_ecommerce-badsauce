@@ -5,20 +5,25 @@ import Button from '@/components/Button';
 export default function About() {
   return (
     <div className="mx-auto flex flex-col items-center justify-center gap-2 py-4">
-      <div id="about" className="grid-col-1 my-8 grid max-w-[300px] gap-2">
-        <h2 className="font-heading text-xl">WE GOT THE SAUCE!</h2>
+      <div
+        id="about"
+        className="grid-col-1 my-8 grid max-w-[280px] gap-2 sm:max-w-[560px]"
+      >
+        <h2 className="font-heading text-2xl">WE GOT THE SAUCE!</h2>
         <p className="text-left font-sans text-base leading-relaxed">
           Unleash the flavour, ignite your taste buds. Our artisanal,
           handcrafted hot sauces are here to add a dash of zing to your everyday
           meals. Made with love in the heart of London, we are your culinary
           companion, making meals memorable since 2020.
         </p>
-        <p className="text-left font-sans">
-          Hand Squeezed | Hand Poured | 100% Natural
+        <p className=" text-left font-sans">
+          Our sauce is naturally fermented for 28 days, mashed by hand, squeezed
+          by hand and poured by hand.
         </p>
+        <p className=" text-left font-sans">It's raw, natural and bites.</p>
       </div>
-      <div className="grid-col-1 mb-8 grid max-w-[300px] gap-3">
-        <h2 className="font-heading text-xl">OUR SAUCE.</h2>
+      <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
+        <h2 className="font-heading text-2xl">OUR SAUCE.</h2>
         <p className="text-left font-sans text-base leading-relaxed">
           At BADSAUCE, we believe that hot sauce should do more than just burn
           your tongue. Our sauces are crafted to enhance your food's flavour and
@@ -28,8 +33,8 @@ export default function About() {
         </p>
         <p className="text-left font-sans"></p>
       </div>
-      <div className="grid-col-1 mb-8 grid max-w-[300px] gap-3">
-        <h2 className="font-heading text-xl">OUR VALUES.</h2>
+      <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
+        <h2 className="font-heading text-2xl">OUR VALUES.</h2>
         <p className="text-left font-sans text-base leading-relaxed">
           <span className="underline decoration-slate-400 decoration-2 underline-offset-2">
             All-Natural
@@ -47,8 +52,8 @@ export default function About() {
           slap of flavour.
         </p>
       </div>
-      <div className="grid-col-1 mb-8 grid max-w-[300px] gap-3">
-        <h2 className="font-heading text-xl">WHY CHOOSE US?</h2>
+      <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
+        <h2 className="font-heading text-2xl">WHY CHOOSE US?</h2>
         <p className="text-left font-sans text-base leading-relaxed">
           <span className="underline decoration-slate-400 decoration-2 underline-offset-2">
             Quality
@@ -74,8 +79,8 @@ export default function About() {
           economy and reducing our carbon footprint.
         </p>
       </div>
-      <div className="grid-col-1 mb-8 grid max-w-[300px] gap-3">
-        <h2 className="font-heading text-xl">LIKE WHAT WE DO?</h2>
+      <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
+        <h2 className="font-heading text-2xl">LIKE WHAT WE DO?</h2>
         <p className="text-left font-sans text-base leading-relaxed">
           Ready to experience a sauce that truly slaps? Unleash the full
           potential of your meals with BADSAUCE naturally fermented hot sauces.
@@ -85,8 +90,8 @@ export default function About() {
       </div>
       <Link href="/shop">
         <Button
-          label="Buy Now"
-          className="bg-black font-sans font-semibold text-white shadow-lg"
+          label="Shop Now"
+          className="animate-bounce bg-black font-sans font-semibold text-white shadow-lg"
         />
       </Link>
     </div>
