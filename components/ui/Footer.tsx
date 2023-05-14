@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="h-24">
       <div className="container mx-auto flex h-full flex-col justify-end px-4">
-        <ul className="p-2 text-center">
+        <ul className="grid-col-1 grid gap-1 p-2 text-center">
           <li>
             <Link
               href="https://instagram.com/thebadsauce?igshid=NTc4MTIwNjQ2YQ=="
@@ -19,7 +19,7 @@ export default function Footer() {
           <li className="text-md font-sans font-medium">
             hello@badsauce.co.uk
           </li>
-          <li className="font-sans text-sm">© 2023 All Rights Reserved</li>
+          <li className="font-sans text-xs">© 2023 All Rights Reserved</li>
         </ul>
       </div>
     </footer>

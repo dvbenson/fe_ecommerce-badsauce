@@ -5,7 +5,6 @@ import DefaultLayout from '../../components/ui/DefaultLayout';
 import ProductCard from '../../components/ui/ProductCard';
 import { v4 as uuidv4 } from 'uuid';
 import { Product } from 'app/store';
-import ProductDetails from '@/components/ProductDetails';
 
 export interface CardProps extends Product {
   product_id: string;

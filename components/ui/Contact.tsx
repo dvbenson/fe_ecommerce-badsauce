@@ -13,12 +13,13 @@ export default function Contact() {
             </h2>
           </div>
         </div>
-        {/* <h2 className="font-heading text-xl">GET IN TOUCH.</h2> */}
-        <p className="text-left font-sans text-base leading-relaxed">
+        <p className="text-left font-sans text-base font-light leading-relaxed">
           Got a burning question? Or maybe a smouldering suggestion? We'd love
           to hear from you. Connect with us at{' '}
-          <span className="font-medium underline">hello@badsauce.co.uk</span>,
-          or drop us a line and fill out the form. Let's add some spice to the
+          <span className="font-medium font-normal underline">
+            hello@badsauce.co.uk
+          </span>
+          , or drop us a line and fill out the form. Let's add some spice to the
           conversation!
         </p>
       </div>
