@@ -1,6 +1,6 @@
 'use client';
 import { useCart } from '../../app/store';
-import { CardProps } from '../../app/shop/page';
+import { CardProps } from '../../app/store';
 import ImageFrame from '../ImageFrame';
 import { Product } from 'app/store';
 

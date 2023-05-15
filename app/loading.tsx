@@ -1,5 +1,5 @@
 import DefaultLayout from '@/components/ui/DefaultLayout';
-import SkeletonLanding from '@/components/SkeletonLanding';
+import { SkeletonLanding } from '@/components/Skeletons';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Loading() {

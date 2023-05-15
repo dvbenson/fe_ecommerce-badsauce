@@ -1,7 +1,7 @@
 'use client';
 import { useCart } from 'app/store';
 import { useRouter } from 'next/navigation';
-import React, { ReactEventHandler } from 'react';
+import React from 'react';
 import ImageFrame from '@/components/ImageFrame';
 import DefaultLayout from '@/components/ui/DefaultLayout';
 import ProductDetails from '@/components/ProductDetails';

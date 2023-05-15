@@ -4,17 +4,6 @@ import Link from 'next/link';
 import DefaultLayout from '../../components/ui/DefaultLayout';
 import ProductCard from '../../components/ui/ProductCard';
 import { v4 as uuidv4 } from 'uuid';
-import { Product } from 'app/store';
-
-export interface CardProps extends Product {
-  product_id: string;
-  price_id: string;
-  product_price: number;
-  product_desc: any;
-  product_name: string;
-  product_img: string[];
-  metadata: object;
-}
 
 export default async function Shop() {
   const products: PriceWithProduct[] = await getStripeProducts();

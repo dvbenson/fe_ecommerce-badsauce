@@ -67,7 +67,7 @@ export default function SideNavBar({
               href={pathname === '/shop' ? '/' : '/#home'}
               label={'Home'}
               active={pathname === '/shop'}
-              className=" font-lg ml-4 cursor-pointer py-4 font-sans  font-semibold hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className=" font-lg ml-4 cursor-pointer py-4 font-sans  font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <NavItem
@@ -75,7 +75,7 @@ export default function SideNavBar({
               href={pathname === '/shop' ? '/#about' : '#home'}
               label={'About'}
               active={pathname === '/shop'}
-              className="font-lg  ml-4 cursor-pointer py-4 font-sans  font-semibold hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="font-lg  ml-4 cursor-pointer py-4 font-sans  font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <NavItem
@@ -83,14 +83,14 @@ export default function SideNavBar({
               href={pathname === '/shop' ? '/#contact' : '#contact'}
               label={'Contact'}
               active={pathname === '/shop'}
-              className="font-lg  ml-4 cursor-pointer py-4 font-sans font-semibold  hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="font-lg  ml-4 cursor-pointer py-4 font-sans font-medium  hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <NavItem
               key={uuidv4()}
               href="/shop"
               label="Shop"
-              className="font-lg ml-4 cursor-pointer py-4 font-sans font-semibold  hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="font-lg ml-4 cursor-pointer py-4 font-sans font-medium  hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <li key={uuidv4()} className="ml-4 py-4">

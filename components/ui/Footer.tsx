@@ -16,7 +16,7 @@ export default function Footer() {
               <Icon icon={faInstagram} className="text-3xl font-medium" />
             </Link>
           </li>
-          <li className="text-md font-sans font-medium">
+          <li className="text-md font-sans font-normal">
             hello@badsauce.co.uk
           </li>
           <li className="font-sans text-xs">© 2023 All Rights Reserved</li>

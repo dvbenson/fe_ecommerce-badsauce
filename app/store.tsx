@@ -16,14 +16,22 @@ export interface Product {
   metadata: object;
 }
 
+export interface CardProps extends Product {
+  product_id: string;
+  price_id: string;
+  product_price: number;
+  product_desc: any;
+  product_name: string;
+  product_img: string[];
+  metadata: object;
+}
+
 interface CartState {
   cart: CartItem[];
   product: Product;
-  productList: object[];
   quantityCount: number;
   totalAmount: number | string;
   selectedItemIndex: number | null;
-  setProductList: (params: { newProductList: object[] }) => void;
   setSelectedItemIndex: (params: { itemIndex: number | null }) => void;
   setProduct: (params: { newProduct: Product }) => void;
   setQuantityCount: (params: { newQuantityCount: number }) => void;
@@ -49,17 +57,6 @@ export const useCart = create<CartState>()((set, get) => ({
   quantityCount: 1,
   totalAmount: 0,
   selectedItemIndex: null,
-  productList: [],
-
-  setProductList: (params) => {
-    const { newProductList } = params;
-    set((state) => {
-      return {
-        ...state,
-        productList: newProductList,
-      };
-    });
-  },
 
   setSelectedItemIndex: (params) => {
     const { itemIndex } = params;

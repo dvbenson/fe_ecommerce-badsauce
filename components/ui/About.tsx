@@ -1,13 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import Button from '@/components/Button';
 
 export default function About() {
   return (
     <div className="mx-auto flex flex-col items-center justify-center gap-2 py-4">
       <div
         id="about"
-        className="grid-col-1 my-8 grid max-w-[280px] gap-2 sm:max-w-[560px]"
+        className="grid-col-1 mb-16 mt-8 grid max-w-[280px] gap-2 sm:max-w-[560px]"
       >
         <div className="w-100vh flex flex-row items-center justify-center">
           <div className="relative min-h-[25px] w-full max-w-[225px] ">
@@ -32,7 +31,7 @@ export default function About() {
           It's raw, natural and bites.
         </p>
       </div>
-      <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
+      <div className="grid-col-1 mb-16 grid max-w-[280px] gap-3 sm:max-w-[560px]">
         <div className="w-100vh flex flex-row items-center justify-center">
           <div className="relative min-h-[25px] w-full max-w-[137px] ">
             <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />
@@ -50,7 +49,7 @@ export default function About() {
         </p>
         <p className="text-left font-sans"></p>
       </div>
-      <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
+      <div className="grid-col-1 mb-16 grid max-w-[280px] gap-3 sm:max-w-[560px]">
         <div className="w-100vh flex flex-row items-center justify-center">
           <div className="relative min-h-[25px] w-full max-w-[145px] ">
             <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />
@@ -76,7 +75,7 @@ export default function About() {
           slap of flavour.
         </p>
       </div>
-      <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
+      <div className="grid-col-1 mb-16 grid max-w-[280px] gap-3 sm:max-w-[560px]">
         <div className="w-100vh flex flex-row items-center justify-center">
           <div className="relative min-h-[25px] w-full max-w-[205px] ">
             <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />
@@ -111,7 +110,7 @@ export default function About() {
           economy and reducing our carbon footprint.
         </p>
       </div>
-      <div className="grid-col-1 mb-8 grid max-w-[280px] gap-3 sm:max-w-[560px]">
+      <div className="grid-col-1 mb-16 grid max-w-[280px] gap-3 sm:max-w-[560px]">
         <div className="w-100vh flex flex-row items-center justify-center">
           <div className="relative min-h-[25px] w-full max-w-[217px] ">
             <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />
@@ -122,17 +121,17 @@ export default function About() {
         </div>
         <p className="text-left font-sans text-base font-light leading-relaxed">
           Ready to experience a sauce that truly slaps? Unleash the full
-          potential of your meals with BADSAUCE naturally fermented hot sauces.
-          Shop now to add a burst of natural, full-bodied flavour to your
-          culinary adventures!
+          potential of your meals with BADSAUCE naturally fermented hot sauces.{' '}
+          <Link
+            href="/shop"
+            className="font-medium underline decoration-2 underline-offset-2"
+          >
+            Shop now
+          </Link>{' '}
+          to add a burst of natural, full-bodied flavour to your culinary
+          adventures!
         </p>
       </div>
-      <Link href="/shop">
-        <Button
-          label="Shop Now"
-          className="animate-bounce rounded-full bg-black px-3 py-1 font-sans font-semibold text-white shadow-lg"
-        />
-      </Link>
     </div>
   );
 }
