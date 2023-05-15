@@ -1,7 +1,7 @@
 'use client';
+import React, { useEffect } from 'react';
 import { useCart } from 'app/store';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import ImageFrame from '@/components/ImageFrame';
 import DefaultLayout from '@/components/ui/DefaultLayout';
 import ProductDetails from '@/components/ProductDetails';
@@ -11,7 +11,10 @@ import { CartItem } from 'app/store';
 
 export default function ProductPage() {
   const router = useRouter();
-  const product = useCart((state) => state.product);
+  const [product, setProduct] = useCart((state) => [
+    state.product,
+    state.setProduct,
+  ]);
   const [quantityCount, setQuantityCount] = useCart((state) => [
     state.quantityCount,
     state.setQuantityCount,

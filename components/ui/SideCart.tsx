@@ -24,7 +24,7 @@ export default function SideCart({ handleSideCart }: SideCartProps) {
     const lineItems = cart.map((item) => {
       return { price: item.price_id, quantity: item.quantity };
     });
-    const response = await fetch('/api/stripe_checkout', {
+    const response = await fetch('/api/stripe/checkout', {
       method: 'POST',
       body: JSON.stringify({ lineItems }),
     });
