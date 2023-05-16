@@ -12,14 +12,8 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-// const calSans = localFont({
-//   src: '../public/assets/fonts/CalSans-SemiBold.woff2',
-//   display: 'swap',
-//   variable: '--font-cal-sans',
-// });
-
 const fontHeading = localFont({
-  src: '../public/assets/fonts/CalSans-SemiBold.woff2',
+  src: '../assets/fonts/CalSans-SemiBold.woff2',
   display: 'swap',
   variable: '--font-heading',
 });

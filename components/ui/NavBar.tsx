@@ -36,6 +36,16 @@ export default function Navbar() {
     }, 0);
   };
 
+  function getHref(pathname: string, target: string): string {
+    if (pathname === '/') {
+      return `#${target}`;
+    } else if (pathname.includes('/products')) {
+      return `/#${target}`;
+    } else {
+      return `/#${target}`;
+    }
+  }
+
   return (
     <nav className="fixed z-50 h-24 w-full border-t-0 bg-white">
       <div className="2x1:px-16 flex h-full w-full items-center justify-between px-4 ">
@@ -44,21 +54,21 @@ export default function Navbar() {
           <ul className="hidden flex-row gap-5 lg:flex">
             <NavItem
               key={uuidv4()}
-              href={pathname === '/shop' ? '/' : '/#home'}
+              href={getHref(pathname, 'home')}
               label={'Home'}
               active={pathname === '/shop'}
               className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
             />
             <NavItem
               key={uuidv4()}
-              href={pathname === '/shop' ? '/#about' : '#home'}
+              href={getHref(pathname, 'about')}
               label={'About'}
               active={pathname === '/shop'}
               className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
             />
             <NavItem
               key={uuidv4()}
-              href={pathname === '/shop' ? '/#contact' : '#contact'}
+              href={getHref(pathname, 'contact')}
               label={'Contact'}
               active={pathname === '/shop'}
               className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"

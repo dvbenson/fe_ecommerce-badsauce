@@ -3,7 +3,7 @@ import ContactForm from '@/components/ui/ContactForm';
 
 export default function Contact() {
   return (
-    <div className="mx-auto mb-16 flex flex-col items-center justify-center gap-3 ">
+    <div className="mx-auto mb-16  flex flex-col items-center justify-center gap-3 ">
       <div className="grid-col-1 mb-8 grid max-w-[300px] gap-3 sm:max-w-[560px]">
         <div className="w-100vh flex flex-row items-center justify-center">
           <div className="relative min-h-[25px] w-full max-w-[167px] ">

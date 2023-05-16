@@ -1,11 +1,14 @@
 import DefaultLayout from '@/components/ui/DefaultLayout';
+// import ImageCrossBar from '@/components/ImageCrossBar';
 import ScrollOffset from '@/components/ScrollOffset';
 import Hero from '@/components/ui/Hero';
 import About from '@/components/ui/About';
 import Contact from '@/components/ui/Contact';
+
 export default function Home() {
   return (
     <DefaultLayout>
+      {/* <ImageCrossBar /> */}
       <main className="mx-auto flex min-h-screen flex-col p-4 text-center">
         <ScrollOffset id="home" />
         <section className="mt-24 flex-grow">
@@ -16,7 +19,7 @@ export default function Home() {
           <About />
         </section>
         <ScrollOffset id="contact" />
-        <section className="flex-grow">
+        <section className="mt-1 flex-grow">
           <Contact />
         </section>
       </main>

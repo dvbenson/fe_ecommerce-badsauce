@@ -171,12 +171,24 @@ interface ModalState {
   setModalOpen: () => void;
   isSideCartOpen: boolean;
   setSideCartOpen: () => void;
+  isScreenSizeSmall: boolean;
+  setIsScreenSizeSmall: () => void;
 }
 
 export const useModal = create<ModalState>()((set, get) => ({
   isModalOpen: false,
   isSideCartOpen: false,
   showSideNav: false,
+  isScreenSizeSmall: false,
+
+  setIsScreenSizeSmall: () => {
+    set((state) => {
+      return {
+        ...state,
+        isScreenSizeSmall: !state.isScreenSizeSmall,
+      };
+    });
+  },
 
   setModalOpen: () => {
     set((state) => {

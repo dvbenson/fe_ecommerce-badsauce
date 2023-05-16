@@ -4,19 +4,7 @@ import Link from 'next/link';
 export default function About() {
   return (
     <div className="mx-auto flex flex-col items-center justify-center gap-2 py-4">
-      <div
-        id="about"
-        className="grid-col-1 mb-16 mt-8 grid max-w-[280px] gap-2 sm:max-w-[560px]"
-      >
-        <div className="w-100vh flex flex-row items-center justify-center">
-          <div className="relative min-h-[25px] w-full max-w-[225px] ">
-            <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />
-            <h2 className="absolute bottom-0 left-0 p-1 font-heading text-2xl">
-              WE GOT THE SAUCE!
-            </h2>
-          </div>
-        </div>
-
+      <div className="grid-col-1 mb-16 grid max-w-[280px] gap-2 sm:max-w-[560px]">
         <p className="text-left font-sans text-base font-light leading-relaxed">
           Unleash the flavour, ignite your taste buds. Our artisanal,
           handcrafted hot sauces are here to add a dash of zing to your everyday
@@ -31,7 +19,10 @@ export default function About() {
           It's raw, natural and bites.
         </p>
       </div>
-      <div className="grid-col-1 mb-16 grid max-w-[280px] gap-3 sm:max-w-[560px]">
+      <div
+        id="about"
+        className="grid-col-1 mb-16 grid max-w-[280px] gap-3 sm:max-w-[560px]"
+      >
         <div className="w-100vh flex flex-row items-center justify-center">
           <div className="relative min-h-[25px] w-full max-w-[137px] ">
             <div className="skew-x-4 -skew-y-4  h-full w-full bg-blue-200 p-2" />

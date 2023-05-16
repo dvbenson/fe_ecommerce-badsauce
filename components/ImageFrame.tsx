@@ -1,7 +1,7 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 interface ImageFrameProps {
-  src: string;
+  src: string | StaticImageData;
   alt: string;
   className?: string;
   width?: number;
