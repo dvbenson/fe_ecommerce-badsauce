@@ -20,8 +20,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
       apiVersion: '2022-11-15',
     });
     const session = await stripe.checkout.sessions.create({
-      success_url: 'http://localhost:3000/success',
-      cancel_url: 'http://localhost:3000/cancel',
+      success_url: 'https://badsauce-frontend.vercel.app/success',
+      cancel_url: 'https://badsauce-frontend.vercel.app/cancel',
       line_items: body.lineItems,
       mode: 'payment',
     });
