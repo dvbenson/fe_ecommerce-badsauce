@@ -20,8 +20,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
       apiVersion: '2022-11-15',
     });
     const session = await stripe.checkout.sessions.create({
-      success_url: 'https://badsauce-frontend.vercel.app/success',
-      cancel_url: 'https://badsauce-frontend.vercel.app/cancel',
+      success_url: 'https://www.badsauce.co.uk/success',
+      cancel_url: 'https://www.badsauce.co.uk.vercel.app/cancel',
       line_items: body.lineItems,
       mode: 'payment',
     });
