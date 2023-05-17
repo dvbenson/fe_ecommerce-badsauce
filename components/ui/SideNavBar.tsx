@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
+import useHasHydrated from 'hooks/zustand';
 import { useCart, useModal } from '../../app/store';
 import { usePathname } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
@@ -18,6 +19,7 @@ export default function SideNavBar({
   handleCart,
   handleSideCart,
 }: NavBarProps) {
+  const hasHydrated = useHasHydrated();
   const [showSideNav, setShowSideNav] = useModal((state) => [
     state.showSideNav,
     state.setShowSideNav,
@@ -58,7 +60,7 @@ export default function SideNavBar({
     >
       <div className="flex flex-col py-4">
         <div onClick={handleNav} className="flex cursor-pointer justify-end">
-          <Icon icon={faXmark} className="3xl" />
+          <Icon icon={faXmark} className="text-2xl" />
         </div>
         <div className="mt-4 flex w-full items-center justify-start">
           <ul>
@@ -67,7 +69,7 @@ export default function SideNavBar({
               href={pathname === '/shop' ? '/' : '/#home'}
               label={'Home'}
               active={pathname === '/shop'}
-              className=" font-lg ml-4 cursor-pointer py-4 font-sans  font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="ml-4 cursor-pointer py-4 font-sans text-lg  font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <NavItem
@@ -75,7 +77,7 @@ export default function SideNavBar({
               href={pathname === '/shop' ? '/#about' : '#home'}
               label={'About'}
               active={pathname === '/shop'}
-              className="font-lg  ml-4 cursor-pointer py-4 font-sans  font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="ml-4  cursor-pointer py-4 font-sans text-lg  font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <NavItem
@@ -83,14 +85,14 @@ export default function SideNavBar({
               href={pathname === '/shop' ? '/#contact' : '#contact'}
               label={'Contact'}
               active={pathname === '/shop'}
-              className="font-lg  ml-4 cursor-pointer py-4 font-sans font-medium  hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="ml-4  cursor-pointer py-4 font-sans text-lg font-medium  hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <NavItem
               key={uuidv4()}
               href="/shop"
               label="Shop"
-              className="font-lg ml-4 cursor-pointer py-4 font-sans font-medium  hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="ml-4 cursor-pointer py-4 font-sans text-lg font-medium  hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
               onClick={() => setShowSideNav()}
             />
             <li key={uuidv4()} className="ml-4 py-4">
@@ -106,11 +108,9 @@ export default function SideNavBar({
                   icon={faCartShopping}
                   className="cursor-pointer text-3xl group-hover:text-slate-500"
                 />
-                {cart.length > 0 && (
-                  <span className="pointer-events-none absolute right-7 top-1 grid aspect-square h-6 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-blue-400  font-sans text-white shadow">
-                    <p>{handleCart()}</p>
-                  </span>
-                )}
+                <span className="pointer-events-none absolute right-7 top-1 grid aspect-square h-6 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-blue-400  font-sans text-white shadow">
+                  <p>{hasHydrated && handleCart()}</p>
+                </span>
               </div>
             </li>
           </ul>

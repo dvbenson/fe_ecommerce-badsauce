@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   label?: string | React.ReactNode;

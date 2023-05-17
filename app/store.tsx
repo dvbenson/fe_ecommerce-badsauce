@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 export interface CartItem {
   quantity: number;
@@ -43,126 +44,133 @@ interface CartState {
   decreaseItemQuantity: (params: { itemIndex: number }) => void;
 }
 
-export const useCart = create<CartState>()((set, get) => ({
-  cart: [],
-  product: {
-    product_id: '',
-    price_id: '',
-    product_price: 0,
-    product_desc: '',
-    product_name: '',
-    product_img: [''],
-    metadata: {},
-  },
-  quantityCount: 1,
-  totalAmount: 0,
-  selectedItemIndex: null,
+export const useCart = create<CartState>()(
+  persist(
+    (set, get) => ({
+      cart: [],
+      product: {
+        product_id: '',
+        price_id: '',
+        product_price: 0,
+        product_desc: '',
+        product_name: '',
+        product_img: [''],
+        metadata: {},
+      },
+      quantityCount: 1,
+      totalAmount: 0,
+      selectedItemIndex: null,
 
-  setSelectedItemIndex: (params) => {
-    const { itemIndex } = params;
-    set((state) => {
-      return {
-        ...state,
-        selectedItemIndex: itemIndex,
-      };
-    });
-  },
+      setSelectedItemIndex: (params) => {
+        const { itemIndex } = params;
+        set((state) => {
+          return {
+            ...state,
+            selectedItemIndex: itemIndex,
+          };
+        });
+      },
 
-  setProduct: (params) => {
-    const { newProduct } = params;
-    set((state) => {
-      return {
-        ...state,
-        product: newProduct,
-      };
-    });
-  },
+      setProduct: (params) => {
+        const { newProduct } = params;
+        set((state) => {
+          return {
+            ...state,
+            product: newProduct,
+          };
+        });
+      },
 
-  setQuantityCount: (params) => {
-    const { newQuantityCount } = params;
-    set((state) => {
-      return {
-        ...state,
-        quantityCount: newQuantityCount,
-      };
-    });
-  },
+      setQuantityCount: (params) => {
+        const { newQuantityCount } = params;
+        set((state) => {
+          return {
+            ...state,
+            quantityCount: newQuantityCount,
+          };
+        });
+      },
 
-  setTotalAmount: (params) => {
-    const { newTotalAmount } = params;
-    set((state) => {
-      return {
-        ...state,
-        totalAmount: newTotalAmount,
-      };
-    });
-  },
+      setTotalAmount: (params) => {
+        const { newTotalAmount } = params;
+        set((state) => {
+          return {
+            ...state,
+            totalAmount: newTotalAmount,
+          };
+        });
+      },
 
-  addItemToCart: (params) => {
-    const { newItem } = params;
-    set((state) => {
-      const newCart = [...state.cart, newItem];
-      return { ...state, cart: newCart };
-    });
-  },
+      addItemToCart: (params) => {
+        const { newItem } = params;
+        set((state) => {
+          const newCart = [...state.cart, newItem];
+          return { ...state, cart: newCart };
+        });
+      },
 
-  removeItemFromCart: (params) => {
-    const { itemIndex } = params;
-    set((state) => {
-      const newCart = state.cart.filter((element, elementIndex) => {
-        return elementIndex !== itemIndex;
-      });
-      return {
-        ...state,
-        cart: newCart,
-      };
-    });
-  },
+      removeItemFromCart: (params) => {
+        const { itemIndex } = params;
+        set((state) => {
+          const newCart = state.cart.filter((element, elementIndex) => {
+            return elementIndex !== itemIndex;
+          });
+          return {
+            ...state,
+            cart: newCart,
+          };
+        });
+      },
 
-  emptyCart: () => {
-    set((state) => {
-      const newCart: never[] = [];
-      return {
-        ...state,
-        cart: newCart,
-      };
-    });
-  },
+      emptyCart: () => {
+        set((state) => {
+          const newCart: never[] = [];
+          return {
+            ...state,
+            cart: newCart,
+          };
+        });
+      },
 
-  increaseItemQuantity: (params) => {
-    const { itemIndex } = params;
-    set((state) => {
-      const newCart = state.cart.map((element, elementIndex) => {
-        if (elementIndex === itemIndex) {
-          return { ...element, quantity: element.quantity + 1 };
-        } else {
-          return element;
-        }
-      });
-      return {
-        ...state,
-        cart: newCart,
-      };
-    });
-  },
+      increaseItemQuantity: (params) => {
+        const { itemIndex } = params;
+        set((state) => {
+          const newCart = state.cart.map((element, elementIndex) => {
+            if (elementIndex === itemIndex) {
+              return { ...element, quantity: element.quantity + 1 };
+            } else {
+              return element;
+            }
+          });
+          return {
+            ...state,
+            cart: newCart,
+          };
+        });
+      },
 
-  decreaseItemQuantity: (params) => {
-    const { itemIndex } = params;
-    set((state) => {
-      const newCart = state.cart.map((element, elementIndex) => {
-        if (elementIndex === itemIndex) {
-          return { ...element, quantity: element.quantity - 1 };
-        } else {
-          return element;
-        }
-      });
-      return {
-        ...state,
-        cart: newCart,
-      };
-    });
-  },
-}));
+      decreaseItemQuantity: (params) => {
+        const { itemIndex } = params;
+        set((state) => {
+          const newCart = state.cart.map((element, elementIndex) => {
+            if (elementIndex === itemIndex) {
+              return { ...element, quantity: element.quantity - 1 };
+            } else {
+              return element;
+            }
+          });
+          return {
+            ...state,
+            cart: newCart,
+          };
+        });
+      },
+    }),
+    {
+      name: 'shop-storage',
+    },
+  ),
+);
 
 interface ModalState {
   showSideNav: boolean;

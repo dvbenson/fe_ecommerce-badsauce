@@ -3,8 +3,6 @@ import localFont from 'next/font/local';
 
 import '../styles/globals.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-// import { config } from '@fortawesome/fontawesome-svg-core';
-// config.autoAddCss = false;
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,18 +16,37 @@ const fontHeading = localFont({
   variable: '--font-heading',
 });
 
-export default async function RootLayout(props: {
+interface RootLayoutProps {
   children: React.ReactNode;
-  modal: React.ReactNode;
-}) {
+}
+
+export const metadata = {
+  title: 'BADSAUCE',
+  description:
+    'BADSAUCE is an independent hotsauce concept design, created by Daniel VB in London, UK.',
+  keywords: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+  authors: [
+    {
+      name: 'Daniel VB',
+      url: 'https://danielvb.dev',
+    },
+  ],
+  creator: 'Daniel VB',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+};
+
+export default async function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <title>BadSauce</title>
+        <title>BADSAUCE</title>
       </head>
       <body className={inter.variable + ' ' + fontHeading.variable}>
-        {props.children}
-        {props.modal}
+        {children}
       </body>
     </html>
   );

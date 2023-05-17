@@ -20,6 +20,11 @@ export default function QuantityControl({
     state.totalAmount,
     state.setTotalAmount,
   ]);
+  const currentTotal = ((product_price / 100) * quantityCount).toFixed(2);
+
+  useEffect(() => {
+    handleTotalAmount();
+  }, [quantityCount]);
 
   function handleMinus() {
     if (quantityCount >= 1) {
@@ -31,16 +36,11 @@ export default function QuantityControl({
     setQuantityCount({ newQuantityCount: quantityCount + 1 });
   }
 
-  useEffect(() => {
-    handleTotalAmount();
-  }, [quantityCount]);
-
   function handleTotalAmount() {
     const newTotalAmount = ((product_price / 100) * quantityCount).toFixed(2);
     setTotalAmount({ newTotalAmount });
   }
 
-  const currentTotal = ((product_price / 100) * quantityCount).toFixed(2);
   return (
     <>
       <div className="flex flex-col gap-2">

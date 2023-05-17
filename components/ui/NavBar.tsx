@@ -1,5 +1,6 @@
 'use client';
 import { useCart, useModal } from '../../app/store';
+import useHasHydrated from 'hooks/zustand';
 import { usePathname } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import SideNavBar from '@/components/ui/SideNavBar';
@@ -10,6 +11,7 @@ import Icon from '@/components/Icon';
 import { faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
+  const hasHydrated = useHasHydrated();
   const cart = useCart((state) => state.cart);
   const [showSideNav, setShowSideNav] = useModal((state) => [
     state.showSideNav,
@@ -35,7 +37,7 @@ export default function Navbar() {
       return totalItems + item.quantity;
     }, 0);
   };
-
+  //move to util file
   function getHref(pathname: string, target: string): string {
     if (pathname === '/') {
       return `#${target}`;
@@ -57,28 +59,30 @@ export default function Navbar() {
               href={getHref(pathname, 'home')}
               label={'Home'}
               active={pathname === '/shop'}
-              className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4 lg:text-lg"
             />
             <NavItem
               key={uuidv4()}
               href={getHref(pathname, 'about')}
               label={'About'}
               active={pathname === '/shop'}
-              className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4 lg:text-lg"
             />
             <NavItem
               key={uuidv4()}
               href={getHref(pathname, 'contact')}
               label={'Contact'}
               active={pathname === '/shop'}
-              className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4 lg:text-lg"
             />
+
             <NavItem
               key={uuidv4()}
               href="/shop"
               label="Shop"
-              className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4"
+              className="p-4 font-sans font-medium hover:underline hover:decoration-blue-200 hover:decoration-4 hover:underline-offset-4 lg:text-lg"
             />
+
             <li key={uuidv4()} className="font-sans font-medium">
               <div
                 onClick={(e: React.MouseEvent<HTMLDivElement>) => {
@@ -91,11 +95,10 @@ export default function Navbar() {
                   icon={faCartShopping}
                   className="cursor-pointer text-3xl group-hover:text-slate-500"
                 />
-                {cart.length > 0 && (
-                  <span className=" pointer-events-none absolute right-2.5 top-1/4 grid aspect-square h-6 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-blue-400  font-sans text-white shadow">
-                    <p>{handleCart()}</p>
-                  </span>
-                )}
+
+                <span className="pointer-events-none absolute right-2.5 top-1/4 grid aspect-square h-6 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-blue-400  font-sans text-white shadow">
+                  <p>{hasHydrated && handleCart()}</p>
+                </span>
               </div>
             </li>
           </ul>

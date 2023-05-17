@@ -11,7 +11,7 @@ export default function CancelPage() {
         <main className="relative mx-auto flex min-h-screen flex-col p-4 text-center">
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform sm:mt-11">
             <div className="flex flex-col gap-2 p-12 shadow-xl">
-              <h1 className="border-b-4 text-center font-heading text-3xl font-semibold leading-relaxed">
+              <h1 className="border-b-4 text-center font-heading text-3xl leading-relaxed">
                 Payment Cancelled!
               </h1>
               <h2 className="font-sans text-lg font-semibold">

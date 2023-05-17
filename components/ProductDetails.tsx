@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface ProductDetailsProps {
   productName: string;
   productDescription: string;

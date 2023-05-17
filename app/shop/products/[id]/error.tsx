@@ -1,10 +1,20 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import Link from 'next/link';
 import DefaultLayout from '@/components/ui/DefaultLayout';
 
-export default async function Error() {
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
   //TODO: add link to open email when click on email address
   return (
     <div>
@@ -13,10 +23,16 @@ export default async function Error() {
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform sm:mt-11">
             <div className="flex flex-col gap-2 p-12 shadow-xl">
               <h1 className="border-b-4 text-center text-3xl font-semibold leading-relaxed">
-                Something went wrong... oops!
+                Something went wrong... oops! {error.message}
               </h1>
               <h2 className="text-lg">
-                Please follow the links below to get back on track.
+                Please press this{' '}
+                <Button
+                  label={'button'}
+                  onClick={() => reset()}
+                  className="w-24 bg-black font-semibold text-white"
+                />{' '}
+                or follow the links below to get back on track.
               </h2>
               <p className="text-md font-medium underline decoration-solid underline-offset-4">
                 Any questions?

@@ -89,7 +89,10 @@ export default function SideCart({ handleSideCart }: SideCartProps) {
               />
               <Button
                 label={'CHECKOUT'}
-                onClick={() => checkout()}
+                onClick={() => {
+                  checkout();
+                  setSideCartOpen();
+                }}
                 className="h-8 w-40 rounded-full bg-green-600 text-center font-sans font-semibold text-white hover:opacity-75"
               />
             </div>

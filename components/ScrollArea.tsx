@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import useHasHydrated from 'hooks/zustand';
 import { useCart } from 'app/store';
 import { v4 as uuidv4 } from 'uuid';
 import ImageFrame from '@/components/ImageFrame';
@@ -8,6 +9,7 @@ import Icon from '@/components/Icon';
 import { faPlus, faMinus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default function ScrollArea() {
+  const hasHydrated = useHasHydrated();
   const cart = useCart((state) => state.cart);
   const [selectedItemIndex, setSelectedItemIndex] = useCart((state) => [
     state.selectedItemIndex,
@@ -35,78 +37,79 @@ export default function ScrollArea() {
           </p>
         ) : (
           <ul className="flex list-none flex-col items-center justify-center gap-4 p-4">
-            {cart.map((item: any, itemIndex: number) => (
-              <li key={uuidv4()} className="snap-center">
-                <div
-                  className="mr-4 flex flex-col items-center justify-center gap-2"
-                  onClick={() => handleShowCartButtons(itemIndex)}
-                >
-                  <div className="relative">
-                    <div className="pointer-events-none relative shadow">
-                      <ImageFrame
-                        src={item.product_img[0]}
-                        alt={item.price_id}
-                        height={150}
-                        width={150}
-                        className={
-                          typeof selectedItemIndex === 'number' &&
-                          selectedItemIndex === itemIndex
-                            ? 'opacity-25'
-                            : ''
-                        }
-                      />
+            {hasHydrated &&
+              cart.map((item: any, itemIndex: number) => (
+                <li key={uuidv4()} className="snap-center">
+                  <div
+                    className="mr-4 flex flex-col items-center justify-center gap-2"
+                    onClick={() => handleShowCartButtons(itemIndex)}
+                  >
+                    <div className="relative">
+                      <div className="pointer-events-none relative shadow">
+                        <ImageFrame
+                          src={item.product_img[0]}
+                          alt={item.price_id}
+                          height={150}
+                          width={150}
+                          className={
+                            typeof selectedItemIndex === 'number' &&
+                            selectedItemIndex === itemIndex
+                              ? 'opacity-25'
+                              : ''
+                          }
+                        />
 
-                      {selectedItemIndex === itemIndex && (
-                        <div className="absolute inset-0 z-50 grid place-items-center bg-transparent">
-                          <div className="grid-col-1  grid items-center justify-center p-4">
-                            <div
-                              className="pointer-events-auto"
-                              onClick={() => {
-                                removeItemFromCart({ itemIndex });
-                                handleShowCartButtons(itemIndex);
-                              }}
-                            >
-                              <Icon
-                                icon={faTrashAlt}
-                                className="pointer-events-auto text-6xl"
-                              />
+                        {selectedItemIndex === itemIndex && (
+                          <div className="absolute inset-0 z-50 grid place-items-center bg-transparent">
+                            <div className="grid-col-1  grid items-center justify-center p-4">
+                              <div
+                                className="pointer-events-auto"
+                                onClick={() => {
+                                  removeItemFromCart({ itemIndex });
+                                  handleShowCartButtons(itemIndex);
+                                }}
+                              >
+                                <Icon
+                                  icon={faTrashAlt}
+                                  className="pointer-events-auto text-6xl"
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      )}
-                    </div>
-                    <div className="absolute bottom-0 left-0 flex w-[120px] -translate-y-1 translate-x-4 transform flex-row place-items-center justify-between rounded-full bg-neutral-300 opacity-50 shadow hover:opacity-100">
-                      <Button
-                        className="pointer-events-auto h-6 w-10 border-r-2 px-0 py-0 text-black shadow-none"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (item.quantity === 1) {
-                            removeItemFromCart({ itemIndex });
-                          } else {
-                            decreaseItemQuantity({ itemIndex });
-                          }
-                        }}
-                        label={<Icon icon={faMinus} className="" />}
-                      />
-                      <div className="pointer-events-auto grid aspect-square h-6 w-24 place-items-center bg-neutral-200 p-0 font-sans  font-medium  text-black shadow-inner ">
-                        <span className="pointer-events-auto">
-                          {item.quantity}
-                        </span>
+                        )}
                       </div>
+                      <div className="absolute bottom-0 left-0 flex w-[120px] -translate-y-1 translate-x-4 transform flex-row place-items-center justify-between rounded-full bg-neutral-300 opacity-50 shadow hover:opacity-100">
+                        <Button
+                          className="pointer-events-auto h-6 w-10 border-r-2 px-0 py-0 text-black shadow-none"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (item.quantity === 1) {
+                              removeItemFromCart({ itemIndex });
+                            } else {
+                              decreaseItemQuantity({ itemIndex });
+                            }
+                          }}
+                          label={<Icon icon={faMinus} className="" />}
+                        />
+                        <div className="pointer-events-auto grid aspect-square h-6 w-24 place-items-center bg-neutral-200 p-0 font-sans  font-medium  text-black shadow-inner ">
+                          <span className="pointer-events-auto">
+                            {item.quantity}
+                          </span>
+                        </div>
 
-                      <Button
-                        className="pointer-events-auto h-6 w-10  border-l-2 px-0 py-0 text-black shadow-none"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          increaseItemQuantity({ itemIndex });
-                        }}
-                        label={<Icon icon={faPlus} className="" />}
-                      />
+                        <Button
+                          className="pointer-events-auto h-6 w-10  border-l-2 px-0 py-0 text-black shadow-none"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            increaseItemQuantity({ itemIndex });
+                          }}
+                          label={<Icon icon={faPlus} className="" />}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            ))}
+                </li>
+              ))}
           </ul>
         )}
       </div>
