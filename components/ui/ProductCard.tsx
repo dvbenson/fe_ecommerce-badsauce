@@ -35,9 +35,7 @@ export default function ProductCard({
     <div
       id="card-container"
       className="relative h-[300px] w-[300px]"
-      onClick={() => {
-        onProductClick;
-      }}
+      onClick={() => onProductClick()}
     >
       <ImageFrame
         src={product_img[0]}
