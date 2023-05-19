@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { useCart, CartItem } from 'app/store';
-import useHasHydrated from 'hooks/zustand';
 import { useRouter } from 'next/navigation';
 import ImageFrame from '@/components/ImageFrame';
 import DefaultLayout from '@/components/ui/DefaultLayout';
@@ -10,7 +9,6 @@ import QuantityControl from '@/components/QuantityControl';
 import Button from '@/components/Button';
 
 export default function ProductPage() {
-  const hasHydrated = useHasHydrated();
   const router = useRouter();
   const product = useCart((state) => state.product);
   const [quantityCount, setQuantityCount] = useCart((state) => [
@@ -35,59 +33,49 @@ export default function ProductPage() {
     setQuantityCount({ newQuantityCount: 1 });
     router.back();
   };
-
   return (
     <DefaultLayout>
-      <main className="mb-16 flex min-h-screen items-center justify-center sm:relative">
-        <div className="grid-col-1 sm:grid-col-2 mt-24 grid max-w-[1000px] sm:absolute sm:left-1/2 sm:top-1/2 sm:mt-8 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:transform">
+      <main className="mb-16 flex min-h-screen items-center justify-center">      
+        <div className="mt-24 ">
           <div className="flex flex-col items-center justify-center gap-4 p-4 sm:flex-row sm:gap-20">
-            {hasHydrated && (
-              <ImageFrame
-                src={product.product_img[0]}
-                alt={product.product_name}
-                width={300}
-                height={300}
-                className={'min-w-[300px]'}
-              />
-            )}
-
+            <ImageFrame
+              src={product.product_img[0]}
+              alt={product.product_name}
+              width={500}
+              height={500}
+              className={'max-w-[300px] sm:max-w-[400px] md:max-w-[500px] shadow-xl'}
+              variant=""
+            />
             <div
               id="non-img-container"
-              className="grid-col-1 grid place-items-center gap-4 p-4"
+              className="grid-col-1 grid place-items-center gap-4 px-4"
             >
-              {/* {hasHydrated && ( */}
               <ProductDetails
                 productName={product.product_name}
                 productDescription={product.product_desc}
                 productPrice={product.product_price}
               />
-              {/*  )} */}
               <div
                 id="quantity-total-container"
                 className="flex flex-row items-center justify-center gap-2"
               >
-                {/* {hasHydrated && ( */}
                 <QuantityControl product_price={product.product_price} />
-                {/* )} */}
               </div>
               <div className="grid-col-1 grid place-items-center gap-2">
-                {/* {hasHydrated && ( */}
                 <Button
                   onClick={handleBackToShop}
                   label={'BACK TO SHOP'}
-                  className="h-8 w-52 rounded-full bg-black font-sans font-semibold text-white shadow"
+                  className="h-8 w-52 rounded-full bg-zinc-800 font-sans font-semibold text-white shadow-lg sm:h-10 sm:text-xl"
                 />
-                {/* )} */}
-                {/* {hasHydrated && ( */}
                 <Button
-                  onClick={() => {
+                  onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                     handleAddToCart();
                     setQuantityCount({ newQuantityCount: 1 });
+                    handleBackToShop(e);
                   }}
                   label={'ADD TO CART'}
-                  className="h-8 w-52 rounded-full bg-green-600 font-sans font-semibold text-white shadow"
+                  className="h-8 w-52  rounded-full bg-blue-500 font-sans text-lg font-semibold text-white shadow-lg sm:h-10 sm:text-xl"
                 />
-                {/* )} */}
               </div>
             </div>
           </div>

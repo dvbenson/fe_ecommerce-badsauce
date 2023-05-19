@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <div className="flex items-center justify-center">
+    <div className="mt-24 sm:mt-16 absolute inset-0 z-[-1] flex items-center justify-center">
       <Image
         src="/hero.png"
         alt="hero image"

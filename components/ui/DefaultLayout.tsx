@@ -8,9 +8,11 @@ export default function DefaultLayout({
 }) {
   return (
     <>
+    
       <Navbar />
       {children}
       <Footer />
+      
     </>
   );
 }

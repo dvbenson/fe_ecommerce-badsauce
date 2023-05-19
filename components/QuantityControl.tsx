@@ -44,11 +44,11 @@ export default function QuantityControl({
   return (
     <>
       <div className="flex flex-col gap-2">
-        <div className="grid grid-cols-2 place-items-center gap-4">
-          <h2 className="w-3/4 border-b-2 border-slate-200 text-center font-sans text-lg font-semibold">
+        <div className="grid grid-cols-2 place-items-center gap-5">
+          <h2 className="w-3/4 border-b-2 border-slate-200 text-center font-sans text-lg font-semibold sm:text-xl">
             Quantity
           </h2>
-          <h2 className="w-2/3 border-b-2 border-slate-200 text-center font-sans text-lg font-semibold">
+          <h2 className="w-2/3 border-b-2 border-slate-200 text-center font-sans text-lg font-semibold sm:text-xl">
             Total
           </h2>
         </div>
@@ -59,18 +59,20 @@ export default function QuantityControl({
               label={<Icon icon={faMinus} className="text-black" />}
               className={
                 quantityCount > 1
-                  ? 'h-8 w-8  bg-white  px-0 py-0 shadow-none'
-                  : 'invisible h-8  w-8 bg-gray-200  px-0 py-0 shadow-none'
+                  ? 'h-8 w-8  bg-white px-0 py-0 shadow-none'
+                  : 'invisible h-8  w-8 bg-white  px-0 py-0 shadow-none'
               }
             />
-            <span className="font-sans text-lg">{quantityCount}</span>
+            <span className="font-sans text-lg sm:text-xl">
+              {quantityCount}
+            </span>
             <Button
               onClick={() => handlePlus()}
               label={<Icon icon={faPlus} className="text-black" />}
               className="h-8 w-8 bg-white px-0 py-0 shadow-none"
             />
           </div>
-          <p className="font-sans text-lg">£ {currentTotal}</p>
+          <p className="font-sans text-lg sm:text-xl">£ {currentTotal}</p>
         </div>
       </div>
     </>

@@ -15,5 +15,9 @@ module.exports = {
       sans: ['var(--font-inter)', ...fontFamily.sans],
       heading: ['var(--font-heading)', ...fontFamily.sans],
     },
+    zIndex: {
+      '-1': '-1',
+      '1': '1',
+    },
   },
 };

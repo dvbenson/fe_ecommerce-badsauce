@@ -80,7 +80,7 @@ export default function SideCart({ handleSideCart }: SideCartProps) {
           <div className="relative w-full overflow-y-auto">
             <ScrollArea />
           </div>
-          <div className="mt-auto flex flex-row justify-end gap-4">
+          <div className="ml-4 mt-auto flex flex-row justify-end gap-4">
             <div className="grid-col-1 grid gap-2">
               <Button
                 onClick={() => backToShop()}
@@ -93,7 +93,7 @@ export default function SideCart({ handleSideCart }: SideCartProps) {
                   checkout();
                   setSideCartOpen();
                 }}
-                className="h-8 w-40 rounded-full bg-green-600 text-center font-sans font-semibold text-white hover:opacity-75"
+                className="h-8 w-40 rounded-full bg-blue-500 text-center font-sans font-semibold text-white hover:opacity-75"
               />
             </div>
             <div className="grid-col-1 grid">

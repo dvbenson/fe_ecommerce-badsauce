@@ -1,6 +1,5 @@
 'use client';
 import { useCart, CardProps, Product } from '../../app/store';
-import useHasHydrated from 'hooks/zustand';
 import ImageFrame from '../ImageFrame';
 
 export default function ProductCard({
@@ -12,7 +11,6 @@ export default function ProductCard({
   product_img,
   metadata,
 }: CardProps) {
-  const hasHydrated = useHasHydrated();
   const [product, setProduct] = useCart((state) => [
     state.product,
     state.setProduct,
@@ -34,7 +32,7 @@ export default function ProductCard({
   return (
     <div
       id="card-container"
-      className="relative h-[300px] w-[300px]"
+      className="h-[300px] w-[300px]"
       onClick={() => onProductClick()}
     >
       <ImageFrame
